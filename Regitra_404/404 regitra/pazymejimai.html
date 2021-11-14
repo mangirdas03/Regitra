@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Regitra - Informacinė sistema</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  <!-- Google web font "Open Sans" -->
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">                <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">                                      <!-- Bootstrap style -->
+    <link rel="stylesheet" href="css/tooplate-style.css">                                   <!-- Templatemo style -->
+
+
+</head>
+
+    <body>
+        
+        <div class="container">
+            <header class="tm-site-header">
+                <h1 class="tm-site-name">Regitra</h1>
+                <p class="tm-site-description">Informacinė sistema</p>
+                
+                <nav class="navbar navbar-expand-md tm-main-nav-container">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#tmMainNav" aria-controls="tmMainNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fa fa-bars"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse tm-main-nav" id="tmMainNav">
+                        <ul class="nav nav-fill tm-main-nav-ul">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Pradžia</a></li>
+                            <li class="nav-item"><a class="nav-link" href="tech_apziuros.html">Techninės apžiūros</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="pazymejimai.html">Pažymėjimai</a></li>
+                            <li class="nav-item"><a class="nav-link" href="auto_valdymas.html">Automobilių valdymas</a></li>
+                            <li class="nav-item"><a class="nav-link" href="egzaminavimas.html">Egzaminavimas</a></li>
+                            <li class="nav-item"><a class="nav-link" href="login.html">Prisijungimas</a></li>
+                        </ul>
+                    </div>
+                </nav>
+                
+            </header>
+            
+            <div class="tm-main-content">
+                <section class="tm-margin-b-l">
+                    <header>
+                        <h2 class="tm-main-title">Pažymėjimai</h2>    
+                    </header>
+                    
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    
+                    <div class="tm-gallery">
+                        <div class="row">
+                            <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
+                                <a href="preview.html">
+                                    <div class="tm-gallery-item-overlay">
+                                        <img src="img/5.jpg" alt="Image" class="img-fluid tm-img-center">
+                                    </div>
+                                    
+                                    <p class="tm-figcaption">Pažymėjimo atnaujinimas</p>
+                                </a>
+                            </figure>
+                            <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
+                                <a href="preview.html">
+                                    <div class="tm-gallery-item-overlay">
+                                        <img src="img/7.jpg" alt="Image" class="img-fluid tm-img-center">
+                                    </div>
+                                    <p class="tm-figcaption">Nuotraukos įkėlimas</p>
+                                </a>
+                            </figure>
+                            <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
+                                <a href="preview.html">
+                                    <div class="tm-gallery-item-overlay">
+                                        <img src="img/8.jpg" alt="Image" class="img-fluid tm-img-center">
+                                    </div>
+                                    <p class="tm-figcaption">Pažymėjimo būklė</p>
+                                </a>
+                            </figure>
+                            <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
+                                <a href="preview.html">
+                                    <div class="tm-gallery-item-overlay">
+                                        <img src="img/4.jpg" alt="Image" class="img-fluid tm-img-center">
+                                    </div>
+                                    <p class="tm-figcaption">Pažymėjimo užsakymas</p>
+                                </a>
+                            </figure>
+                            <figure class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                                <a href="preview.html">
+                                    <div class="tm-gallery-item-overlay">
+                                        <img src="img/6.jpg" alt="Image" class="img-fluid tm-img-center">
+                                    </div>
+                                    <p class="tm-figcaption">Demo pažymėjimas</p>
+                                </a>
+                            </figure>
+                            
+                        </div>   
+                    </div>
+                </section>
+            </div>
+
+            <footer>
+                Copyright &copy; <span class="tm-current-year">2021</span> 404! 
+            </footer>    
+        </div>
+        
+        <!-- load JS files -->
+        <script src="js/jquery-1.11.3.min.js"></script>         <!-- jQuery (https://jquery.com/download/) -->
+        <script src="js/popper.min.js"></script>                <!-- Popper (https://popper.js.org/) -->
+        <script src="js/bootstrap.min.js"></script>             <!-- Bootstrap (https://getbootstrap.com/) -->
+        <script>     
+       
+            $(document).ready(function(){
+                
+                // Update the current year in copyright
+                $('.tm-current-year').text(new Date().getFullYear());
+
+            });
+
+        </script>             
+
+</body>
+</html>
