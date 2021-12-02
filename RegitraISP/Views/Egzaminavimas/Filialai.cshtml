@@ -1,0 +1,58 @@
+﻿@*          Egzaminavimas/Filialai         *@
+@model RegitraISP.ViewModels.FilialaiMiestai
+@{
+    ViewData["Title"] = "Filialai";
+}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  <!-- Google web font "Open Sans" -->
+<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">                <!-- Font Awesome -->
+<link rel="stylesheet" href="css/bootstrap.min.css">                                      <!-- Bootstrap style -->
+@*<link rel="stylesheet" href="css/tooplate-style.css">*@
+
+<section id="section" class="bodysection">
+    <div class="container_white">
+        <section class="tm-margin-b-l">
+            <h2 class="pagetitle">Regitros filialai</h2>
+            <br />
+            <p class="page_infotext">Šiame puslapyje yra pateikiama informacija apie Regitros filialus. Filialai yra suskirstyti pagal miestus, kuriuose juos galima rasti.</p>
+            <br />
+            <br />
+
+            @foreach (var miestas in Model.Miestai)
+            {
+                <br />
+                <p class="cityname">@Html.DisplayFor(modelItem => miestas.Pavadinimas)</p><br/>
+                foreach (var filialas in Model.Filialai)
+                {
+                    if (filialas.FkMiestaspavadinimas == miestas.Pavadinimas)
+                    {
+
+                        <p class="fproperty" style="font-weight:bold">Adresas: @Html.DisplayFor(modelItem => filialas.Gatve) @Html.DisplayFor(modelItem => filialas.GatvesNr)</p>
+                        <p class="fproperty">Galima laikyti:</p>
+                        <ul class="fproperty_ul">
+                            @if (filialas.PraktikosEgz != null)
+                            {
+                                <li class="fproperty_li">Praktikos egzaminą: <b>Taip.</b></li>
+                            }
+                            else
+                            {
+                                <li class="fproperty_li">Praktikos egzaminą: <b>Ne.</b></li>
+                            }
+                            @if (filialas.TeorijosEgz != null)
+                            {
+                                <li class="fproperty_li">Teorijos egzaminą: <b>Taip.</b></li>
+                            }
+                            else
+                            {
+                                <li class="fproperty_li">Teorijos egzaminą: <b>Ne.</b></li>
+                            }
+                        </ul>
+                        <br />
+                    }
+                }
+
+            }
+
+
+        </section>
+    </div>
+</section>

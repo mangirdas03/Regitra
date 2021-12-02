@@ -1,0 +1,17 @@
+﻿@model IEnumerable<RegitraISP.Models.Miesta>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section id="section" class="bodysection">
+    <div class="text-center" style="padding-bottom:1000px;">
+        <h1 class="display-4">Landing page xd</h1>
+
+        <p>data from DB for testing purposes</p>
+        @foreach (var item in Model)
+        {
+            @Html.DisplayFor(modelItem => item.Pavadinimas)<br>
+        }
+    </div>
+
+</section>
