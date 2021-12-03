@@ -32,7 +32,6 @@ namespace RegitraISP
             services.AddMvc(option => option.EnableEndpointRouting = false);
             services.AddDbContext<regitraispContext>();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +50,8 @@ namespace RegitraISP
             app.UseSession();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseMvc(routes =>
             {
@@ -60,6 +61,7 @@ namespace RegitraISP
 
             });
 
+            
 
             app.UseRouting();
 
@@ -70,7 +72,7 @@ namespace RegitraISP
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-
+                endpoints.MapRazorPages();
 
             });
         }

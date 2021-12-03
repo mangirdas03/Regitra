@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -13,76 +15,88 @@
 </head>
 <body>
     <header class="header">
-        <nav class="navbar navbar-expand-xl fixed-top py-2">
-            <div class="container">
-                <a href="@Url.Action("Index", "Home")" class="navbar-brand">Regitra</a>
+        <nav class="navbar navbar-expand-custom fixed-top py-2">
+            <div class="container" style="white-space: nowrap; padding-left:20px; margin-left:20px;">
+                <a href="@Url.Action("Index", "Home")" class="navbar-brand" style="padding-right: 200px;" >Regitra</a>
                 <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
 
                 <div id="navbarSupportedContent" class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a href="@Url.Action("Index", "TechninesApziuros")" class="nav-link text-uppercase font-weight-bold">Techninės apžiūros</a></li>
+                        <li class="nav-item"><a href="@Url.Action("Index", "TechninesApziuros")" class="nav-link text-uppercase font-weight-bold">Tech. apžiūros</a></li>
                         <li class="nav-item"><a href="@Url.Action("Index", "Pazymejimai")" class="nav-link text-uppercase font-weight-bold">Pažymėjimai</a></li>
-                        <li class="nav-item"><a href="@Url.Action("Index", "AutomobiliuValdymas")" class="nav-link text-uppercase font-weight-bold">Automobilių valdymas</a></li>
+                        <li class="nav-item"><a href="@Url.Action("Index", "AutomobiliuValdymas")" class="nav-link text-uppercase font-weight-bold">Auto. valdymas</a></li>
                         <li class="nav-item"><a href="@Url.Action("Index", "Egzaminavimas")" class="nav-link text-uppercase font-weight-bold">Egzaminavimas</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Prisijungimas</a></li>
+                        @if (@HttpContextAccessor.HttpContext.Session.GetString("username") != null && @HttpContextAccessor.HttpContext.Session.GetInt32("isEmployee") == 1)
+                        {
+                            <li class="nav-item"><a href="@Url.Action("EmployeeDashboard", "Home")" class="nav-link text-uppercase font-weight-bold">Darbuotojo informacija</a></li>
+                        }
+                        else if (@HttpContextAccessor.HttpContext.Session.GetString("username") != null && @HttpContextAccessor.HttpContext.Session.GetInt32("isEmployee") != 1)
+                        {
+                            <li class="nav-item"><a href="@Url.Action("UserDashboard", "Home")" class="nav-link text-uppercase font-weight-bold">Naudotojo informacija</a></li>
+                        }
+                        else
+                        {
+                            <li class="nav-item"><a href="@Url.Action("Login", "Home")" class="nav-link text-uppercase font-weight-bold">Prisijungimas</a></li>
+                        }
+
                     </ul>
+                    </div>
                 </div>
+
+            </nav>
+        </header>
+        @*<header class="tm-site-header">
+                <h1 class="tm-site-name">Regitra</h1>
+                <p class="tm-site-description">Informacinė sistema</p>
+
+                <nav class="nnavbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#tmMainNav" aria-controls="tmMainNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse tm-main-nav" id="tmMainNav">
+                        <ul class="nav nav-fill tm-main-nav-ul">
+                            <li class="nav-item"><a class="nav-link active" href="index.html">Pradžia</a></li>
+                            <li class="nav-item"><a class="nav-link" href="tech_apziuros.html">Techninės apžiūros</a></li>
+                            <li class="nav-item"><a class="nav-link" href="pazymejimai.html">Pažymėjimai</a></li>
+                            <li class="nav-item"><a class="nav-link" href="auto_valdymas.html">Automobilių valdymas</a></li>
+                            <li class="nav-item"><a class="nav-link" href="egzaminavimas.html">Egzaminavimas</a></li>
+                            <li class="nav-item"><a class="nav-link" href="login.html">Prisijungimas</a></li>
+                        </ul>
+                    </div>
+                </nav>
+
+            </header>*@
+
+        <div class="container" >
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer id="footer" class="footer">
+            <div class="copyright">
+                &copy; Copyright <strong><span>KTU</span></strong>. All Rights Reserved
+            </div>
+            <div class="creator">
+                Created by <span class="name">404!</span> IFF-9/1
             </div>
 
-        </nav>
-    </header>
-    @*<header class="tm-site-header">
-            <h1 class="tm-site-name">Regitra</h1>
-            <p class="tm-site-description">Informacinė sistema</p>
+        </footer>
 
-            <nav class="nnavbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#tmMainNav" aria-controls="tmMainNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars"></i>
-                </button>
-
-                <div class="collapse navbar-collapse tm-main-nav" id="tmMainNav">
-                    <ul class="nav nav-fill tm-main-nav-ul">
-                        <li class="nav-item"><a class="nav-link active" href="index.html">Pradžia</a></li>
-                        <li class="nav-item"><a class="nav-link" href="tech_apziuros.html">Techninės apžiūros</a></li>
-                        <li class="nav-item"><a class="nav-link" href="pazymejimai.html">Pažymėjimai</a></li>
-                        <li class="nav-item"><a class="nav-link" href="auto_valdymas.html">Automobilių valdymas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="egzaminavimas.html">Egzaminavimas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="login.html">Prisijungimas</a></li>
-                    </ul>
-                </div>
-            </nav>
-
-        </header>*@
-
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer id="footer" class="footer">
-        <div class="copyright">
-            &copy; Copyright <strong><span>KTU</span></strong>. All Rights Reserved
-        </div>
-        <div class="creator">
-            Created by <span class="name">404!</span> IFF-9/1
-        </div>
-
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-    <script>
-        $(function () {
-            $(window).on('scroll', function () {
-                if ($(window).scrollTop() > 10) {
-                    $('.navbar').addClass('active');
-                } else {
-                    $('.navbar').removeClass('active');
-                }
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+        <script>
+            $(function () {
+                $(window).on('scroll', function () {
+                    if ($(window).scrollTop() > 10) {
+                        $('.navbar').addClass('active');
+                    } else {
+                        $('.navbar').removeClass('active');
+                    }
+                });
             });
-        });
-    </script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
+        </script>
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
 </html>

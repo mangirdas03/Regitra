@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Http
+@model RegitraISP.Models.Darbuotoja
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<section id="section" class="bodysection">
+    <div class="text-center" style="padding-bottom:1000px;">
+        <h1 class="display-4">Employee dashboard</h1>
+
+        <p>Sveiki @Html.DisplayFor(modelItem => Model.Vardas) @Html.DisplayFor(modelItem => Model.Pavarde)!</p>
+        <p>Vardas ir slaptazodis:</p>
+        @HttpContextAccessor.HttpContext.Session.GetString("username")
+        @HttpContextAccessor.HttpContext.Session.GetString("passw")
+        <p><a class="btn btn-danger" href="@Url.Action("Logout", "Home")">Logout</a></p>
+
+
+
+    </div>
+
+</section>

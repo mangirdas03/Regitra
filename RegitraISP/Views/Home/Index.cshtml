@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RegitraISP.Models.Miesta>
+﻿@model IEnumerable<RegitraISP.Models.Darbuotoja>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -10,7 +10,9 @@
         <p>data from DB for testing purposes</p>
         @foreach (var item in Model)
         {
-            @Html.DisplayFor(modelItem => item.Pavadinimas)<br>
+            @Html.DisplayFor(modelItem => item.TabelioNr)<br>
+            @Html.DisplayFor(modelItem => item.Slaptazodis)<br>
+            @Html.DisplayFor(modelItem => item.Pavarde)<br>
         }
     </div>
 

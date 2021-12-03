@@ -14,6 +14,7 @@ namespace RegitraISP.Models
         }
 
         public int TabelioNr { get; set; }
+        public string Slaptazodis { get; set; }
         public string Vardas { get; set; }
         public string Pavarde { get; set; }
         public int FkFilialasidFilialas { get; set; }

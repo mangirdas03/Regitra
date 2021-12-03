@@ -16,6 +16,7 @@ namespace RegitraISP.Models
         }
 
         public string AsmensKodas { get; set; }
+        public string Slaptazodis { get; set; }
         public string Vardas { get; set; }
         public string Pavarde { get; set; }
         public string TelNr { get; set; }

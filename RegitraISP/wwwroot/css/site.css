@@ -76,6 +76,7 @@ body {*/
     #555 - pilka spalva
 */
 
+
 .navbar {
     transition: all 0.4s;
 }
@@ -125,7 +126,7 @@ body {*/
 
 
 /* 1200 pakeist negalima, nes viduj bootstrap hardcodinta ir tng fixint :D */
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
     .navbar {
         background: #F0F0F0;
     }
@@ -286,4 +287,40 @@ body {
 }
 
 
+
+
+
+@media (min-width: 1300px) {
+    .navbar-expand-custom {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+    }
+
+        .navbar-expand-custom .navbar-nav {
+            flex-direction: row;
+        }
+
+        .navbar-expand-custom .dropdown-menu {
+            position: absolute;
+        }
+
+        .navbar-expand-custom .nav-link {
+            padding-right: .5rem;
+            padding-left: .5rem;
+        }
+
+        .navbar-expand-custom > .container {
+            flex-wrap: nowrap;
+        }
+
+        .navbar-expand-custom .navbar-collapse {
+            display: flex !important;
+            flex-basis: auto;
+        }
+
+        .navbar-expand-custom .navbar-toggler {
+            display: none;
+        }
+}
 

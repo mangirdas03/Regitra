@@ -212,6 +212,11 @@ namespace RegitraISP.Models
                     .HasColumnType("int(11)")
                     .HasColumnName("tabelio_nr");
 
+                entity.Property(e => e.Slaptazodis)
+                    .IsRequired()
+                    .HasMaxLength(30)
+                    .HasColumnName("slaptazodis");
+
                 entity.Property(e => e.FkFilialasidFilialas)
                     .HasColumnType("int(11)")
                     .HasColumnName("fk_Filialasid_Filialas");
@@ -356,6 +361,11 @@ namespace RegitraISP.Models
                 entity.Property(e => e.AsmensKodas)
                     .HasMaxLength(12)
                     .HasColumnName("asmens_kodas");
+
+                entity.Property(e => e.Slaptazodis)
+                    .IsRequired()
+                    .HasMaxLength(30)
+                    .HasColumnName("slaptazodis");
 
                 entity.Property(e => e.ElPastas)
                     .IsRequired()
