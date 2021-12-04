@@ -202,3 +202,5 @@ C:\Users\gladi\Desktop\redst3\Regitra\RegitraISP\bin\Debug\net5.0\runtimes\win-a
 C:\Users\gladi\Desktop\redst3\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\Home\Login.cshtml.g.cs
 C:\Users\gladi\Desktop\redst3\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\Home\UserDashboard.cshtml.g.cs
 C:\Users\gladi\Desktop\redst3\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\Home\EmployeeDashboard.cshtml.g.cs
+C:\Users\gladi\Desktop\redst3\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\Home\Register.cshtml.g.cs
+C:\Users\gladi\Desktop\redst3\Regitra\RegitraISP\bin\Debug\net5.0\BCrypt.Net-Next.dll

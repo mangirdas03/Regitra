@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RegitraISP.Models;
+using RegitraISP.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using BCryptNet = BCrypt.Net.BCrypt;
 
 namespace RegitraISP.Controllers
 {
@@ -50,22 +52,21 @@ namespace RegitraISP.Controllers
         {
             if (ModelState.IsValid)
             {
-                var checkUser = _context.Klientas.Where(a => a.AsmensKodas.Equals(user.Name) && a.Slaptazodis.Equals(user.Password)).FirstOrDefault();
-                var checkEmpolyee = _context.Darbuotojas.Where(b => b.TabelioNr.ToString().Equals(user.Name) && b.Slaptazodis.Equals(user.Password)).FirstOrDefault();
-                if (checkUser != null)
+                var checkUser = _context.Klientas.Where(a => a.AsmensKodas.Equals(user.Name)).FirstOrDefault();
+                var checkEmpolyee = _context.Darbuotojas.Where(b => b.TabelioNr.ToString().Equals(user.Name)).FirstOrDefault();
+
+                if (checkUser != null && !BCryptNet.Verify(user.Password, checkUser.Slaptazodis))
                 {
                     HttpContext.Session.SetString("username", user.Name.ToString());
-                    HttpContext.Session.SetString("passw", user.Password.ToString());
+                    //HttpContext.Session.SetString("passw", user.Password.ToString()); // Illegal?
                     HttpContext.Session.SetInt32("isEmployee", 0);
-
                     return RedirectToAction("UserDashboard");
                 }
-                else if(checkEmpolyee != null)
+                else if(checkEmpolyee != null && !BCryptNet.Verify(user.Password, checkEmpolyee.Slaptazodis))
                 {
                     HttpContext.Session.SetString("username", user.Name.ToString());
-                    HttpContext.Session.SetString("passw", user.Password.ToString());
+                    //HttpContext.Session.SetString("passw", user.Password.ToString()); // Illegal?
                     HttpContext.Session.SetInt32("isEmployee", 1);
-
                     return RedirectToAction("EmployeeDashboard");
                 }
             }
@@ -107,8 +108,59 @@ namespace RegitraISP.Controllers
             }
             return RedirectToAction("Login");
         }
-
         //throw new Exception("test");
+
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(RegisterKlientas user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            try
+            {   // sutvarko checkboxus -_-
+                if (user.PraktikosEgzIslaikytas != true)
+                {
+                    user.PraktikosEgzIslaikytas = false;
+                    user.PraktikosEgzData = null;
+                }
+                if (user.TeorijosEgzIslaikytas != true)
+                {
+                    user.TeorijosEgzIslaikytas = false;
+                    user.TeorijosEgzData = null;
+                }
+
+                user.Slaptazodis = BCryptNet.HashPassword(user.Slaptazodis);
+                // Mapping?
+                Klienta newUser = new Klienta();
+                newUser.AsmensKodas = user.AsmensKodas;
+                newUser.Slaptazodis = user.Slaptazodis;
+                newUser.Vardas = user.Vardas;
+                newUser.Pavarde = user.Pavarde;
+                newUser.TelNr = user.TelNr;
+                newUser.ElPastas = user.ElPastas;
+                newUser.PraktikosEgzIslaikytas = user.PraktikosEgzIslaikytas;
+                newUser.PraktikosEgzData = user.PraktikosEgzData;
+                newUser.TeorijosEgzIslaikytas = user.TeorijosEgzIslaikytas;
+                newUser.TeorijosEgzData = user.TeorijosEgzData;
+
+                _context.Klientas.Add(newUser);
+                _context.SaveChanges();
+            }
+            catch
+            {
+                TempData["Error"] = "Toks naudotojas jau registruotas!";
+                return View("Register");
+            }
+            return RedirectToAction("Login");
+        }
+
 
     }
 }

@@ -1,82 +1,5 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-/*a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  
-}*/
-
-/* Provide sufficient contrast against white background */
-/*a {
-  color: #0366d6;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}*/
-
-/* Sticky footer styles
--------------------------------------------------- */
-/*html {
-  font-size: 14px;
-}
-@media (min-width: 1168px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}*/
-
-/* Sticky footer styles
--------------------------------------------------- */
-/*html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {*/
-  /* Margin bottom by footer height */
-  /*margin-bottom: 60px;
-}
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px;*/ /* Vertically center the text there */
-/*}*/
-
-/*  
-    #F0F0F0 - vos vos pilka, naudoti vietoj baltos
-    #fff - balta spalva
-    #555 - pilka spalva
-*/
-
-
+﻿
+/*  NAVBAR  */
 .navbar {
     transition: all 0.4s;
 }
@@ -125,7 +48,6 @@ body {*/
 }
 
 
-/* 1200 pakeist negalima, nes viduj bootstrap hardcodinta ir tng fixint :D */
 @media (max-width: 1300px) {
     .navbar {
         background: #F0F0F0;
@@ -138,6 +60,37 @@ body {*/
 .navbar-nav > li{
     padding-left: 20px;
 }
+
+@media (min-width: 1300px) {
+    .navbar-expand-custom {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+    }
+    .navbar-expand-custom .navbar-nav {
+        flex-direction: row;
+    }
+    .navbar-expand-custom .dropdown-menu {
+        position: absolute;
+    }
+    .navbar-expand-custom .nav-link {
+        padding-right: .5rem;
+        padding-left: .5rem;
+    }
+    .navbar-expand-custom > .container {
+        flex-wrap: nowrap;
+    }
+    .navbar-expand-custom .navbar-collapse {
+        display: flex !important;
+        flex-basis: auto;
+    }
+    .navbar-expand-custom .navbar-toggler {
+        display: none;
+    }
+}
+
+
+
 
 
 /* BODY*/
@@ -243,12 +196,26 @@ body {
 
 /*Puslapiai*/
 
+.maincontainer{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+
 .container_white {
     background-color: #F0F0F0;
     padding: 100px;
     box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.8);
 }
 
+.landingtitle {
+    height: 60vh;
+    font-size: 100px;
+    text-align: center;
+    font-weight: bolder;
+    color: #F0F0F0;
+    padding-top: 20vh;
+}
 
 .pagetitle {
     font-size: 40px;
@@ -263,6 +230,7 @@ body {
 
 .page_infotext {
     font-size: 18px;
+    text-align:left;
 }
 
 
@@ -289,38 +257,4 @@ body {
 
 
 
-
-@media (min-width: 1300px) {
-    .navbar-expand-custom {
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-    }
-
-        .navbar-expand-custom .navbar-nav {
-            flex-direction: row;
-        }
-
-        .navbar-expand-custom .dropdown-menu {
-            position: absolute;
-        }
-
-        .navbar-expand-custom .nav-link {
-            padding-right: .5rem;
-            padding-left: .5rem;
-        }
-
-        .navbar-expand-custom > .container {
-            flex-wrap: nowrap;
-        }
-
-        .navbar-expand-custom .navbar-collapse {
-            display: flex !important;
-            flex-basis: auto;
-        }
-
-        .navbar-expand-custom .navbar-toggler {
-            display: none;
-        }
-}
 

@@ -1,0 +1,155 @@
+﻿@model RegitraISP.ViewModels.RegisterKlientas
+@{
+    ViewData["Title"] = "Login";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<section id="section" class="bodysection">
+    <div class="text-center" style="padding-bottom:0px;">
+        <div class="container_white">
+            <h1 class="pagetitle">Registruotis</h1>
+            <br />
+            <p class="page_infotext">Neturite paskyros? Šiame lange, pateikę registracijai būtinus duomenis, galite prisiregistruoti.</p>
+            <br />
+            <br />
+            <div style="text-align:left; margin:auto;">
+                <form method="post" asp-controller="Home" asp-action="Register" style="width:55%; margin:auto" id="reg">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <table id="dynamic_field">
+                        <tr>
+                            <td>Asmens kodas:</td>
+                            <td>
+                                <input type="text" asp-for="AsmensKodas" />
+                                <span asp-validation-for="AsmensKodas" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><br />Slaptažodis:</td>
+                            <td>
+                                <br />
+                                <input type="password" asp-for="Slaptazodis" />
+                                <span asp-validation-for="Slaptazodis" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Pakartokite slaptažodį:</td>
+                            <td>
+                                <input type="password" asp-for="Slaptazodis2" />
+                                <span asp-validation-for="Slaptazodis2" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><br />Vardas:</td>
+                            <td>
+                                <br /><input type="text" asp-for="Vardas" />
+                                <span asp-validation-for="Vardas" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Pavardė:</td>
+                            <td>
+                                <input type="text" asp-for="Pavarde" />
+                                <span asp-validation-for="Pavarde" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tel. nr:</td>
+                            <td>
+                                <input type="text" asp-for="TelNr" />
+                                <span asp-validation-for="TelNr" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>El. paštas:</td>
+                            <td>
+                                <input type="text" asp-for="ElPastas" />
+                                <span asp-validation-for="ElPastas" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr id="te">
+                            <td><br />Ar esate išlaikę teorijos egzaminą?</td>
+                            <td>
+                                <br /><input type="checkbox" asp-for="TeorijosEgzIslaikytas" value="true" class="c1" />
+                                <span asp-validation-for="TeorijosEgzIslaikytas" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        @*<tr>
+            <td>Teorijos egzamino laikymo data:</td>
+            <td>
+                <input type="date" asp-for="TeorijosEgzData" />
+                <span asp-validation-for="TeorijosEgzData" class="text-danger"></span>
+            </td>
+        </tr>*@
+                        <tr id="pe">
+                            <td><br />Ar esate išlaikę praktikos egzaminą?</td>
+                            <td>
+                                <br /><input type="checkbox" asp-for="PraktikosEgzIslaikytas" value="true" class="c2" />
+                                <span asp-validation-for="PraktikosEgzIslaikytas" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        @*<tr>
+            <td>Praktikos egzamino laikymo data:</td>
+            <td>
+                <input type="date" asp-for="PraktikosEgzData" />
+                <span asp-validation-for="PraktikosEgzData" class="text-danger"></span>
+            </td>
+        </tr>*@
+                        @*Nuotrauka?*@
+                        <tr>
+                            <td><br />&nbsp;</td>
+                            <td>
+                                <br /><br />
+                                <input style="margin-left:0px;" class="btn btn-success" type="submit" value="Registruotis" />
+                            </td>
+                        </tr>
+                    </table>
+                    <p style="text-align:center; color:red;"><strong>@TempData["Error"]</strong></p>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+<script>
+    // AJAX scriptukas dinaminem formom
+    $(document).ready(function () {
+
+        if ($('.c1').is(':checked')) {
+            $('<tr class="ted"><td> Teorijos egzamino laikymo data:</td><td>' +
+                '<input type="date" asp-for="TeorijosEgzData" id="TeorijosEgzData" name="TeorijosEgzData" required/>').insertAfter('#te' + '');
+        }
+        else {
+            $('.ted' + '').remove();
+        }
+        if ($('.c2').is(':checked')) {
+            $('<tr id ="ped"><td> Praktikos egzamino laikymo data:</td><td>' +
+                '<input type="date" id="PraktikosEgzData" name="PraktikosEgzData" required/>').insertAfter('#pe' + '');
+        }
+        else {
+            $('#ped' + '').remove();
+        }
+
+
+        $('.c1').click(function () {
+            if ($('.c1').is(':checked')) {
+                $('<tr class="ted"><td> Teorijos egzamino laikymo data:</td><td>' +
+                    '<input type="date" asp-for="TeorijosEgzData" id="TeorijosEgzData" name="TeorijosEgzData" required/>').insertAfter('#te' + '');
+            }
+            else {
+                $('.ted' + '').remove();
+            }
+        });
+        $('.c2').click(function () {
+            if ($('.c2').is(':checked')) {
+                $('<tr id ="ped"><td> Praktikos egzamino laikymo data:</td><td>'+
+                    '<input type="date" id="PraktikosEgzData" name="PraktikosEgzData" required/>').insertAfter('#pe' + '');
+            }
+            else {
+                $('#ped' + '').remove();
+            }
+        });
+
+    });
+</script>

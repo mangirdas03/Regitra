@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "qiI3Kn/UTjrCSdDpj23VHFF+JO2HkAsfpWO81PzYAVbnHff4RfwsmN30afP0u6xOLaFcGEZEEQyuMmMCj27IhA==",
+  "dgSpecHash": "pje6HgObehk7ZZFRpmE/m82LATCm7TqCxwdDy4U9mBvNYvIHQCtMDX2/jCOuHLBi2Ha9LtD/COQE1/FFqecBVA==",
   "success": true,
   "projectFilePath": "C:\\Users\\gladi\\Desktop\\redst3\\Regitra\\RegitraISP\\RegitraISP.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\gladi\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
     "C:\\Users\\gladi\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\gladi\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",
     "C:\\Users\\gladi\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

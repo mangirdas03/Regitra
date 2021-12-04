@@ -4,35 +4,45 @@
 }
 
 <section id="section" class="bodysection">
-    <div class="text-center" style="padding-bottom:500px;">
-        <h1 class="display-4">Landing page xd</h1>
+    <div class="text-center" style="padding-bottom:0px;">
+        <div class="container_white">
+            <h1 class="pagetitle">Prisijungti</h1>
+            <br />
+            <p class="page_infotext">Dalis paslaugų yra teikiama tik prisijungusiems nautotojams. Norėdami prisijungti prie sistemos, įveskite savo prisijungimo vardą (<strong><i>asmens kodą</i></strong> arba <strong><i>darbuotojo numerį</i></strong>) bei slaptažodį. Jei dar neturite paskyros, galite prisiregistruoti.</p>
+            <br />
+            <br />
+            <div style="text-align:left; margin:auto;">
+                <form method="post" asp-controller="Home" asp-action="Login" style="width:55%; margin:auto">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <table>
+                        <tr>
+                            <td>Prisijungimo vardas:</td>
+                            <td>
+                                <input type="text" asp-for="Name" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Slaptažodis:</td>
+                            <td>
+                                <input type="password" asp-for="Password" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                <br />
+                                <input style="margin-left:0px;" class="btn btn-success" type="submit" value="Prisijungti" />
+                                <a class="btn btn-info" href="@Url.Action("Register", "Home")">Registruotis</a>
+                            </td>
+                        </tr>
+                    </table>
+                    <p style="text-align:center; color:red;"><strong>@TempData["Error"]</strong></p>
+                </form>
+            </div>
 
-        <form method="post" asp-controller="Home" asp-action="Login">
-            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
-            <table>
-                <tr>
-                    <td>Prisijungimo vardas</td>
-                    <td>
-                        <input type="text" asp-for="Name" />
-                        <span asp-validation-for="Name" class="text-danger"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Slaptazodis</td>
-                    <td>
-                        <input type="text" asp-for="Password" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                        <input class="btn btn-success" type="submit" value="Login" />
-                    </td>
-                </tr>
-            </table>
-            @*<p style="text-align:center; color:red;"><strong>@TempData["Error"]</strong></p>*@
-        </form>
+            
+        </div>
     </div>
-
 </section>

@@ -2,10 +2,46 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+<link rel="stylesheet" href="~/css/template.css">
+<link rel="stylesheet" href="~/css/owl.css">
+<script src="~/vendor/jquery/jquery.min.js"></script>
 
 <section id="section" class="bodysection">
-    <div class="text-center" style="padding-bottom:1000px;">
-        <h1 class="display-4">Landing page xd</h1>
+
+    <div class="text-center" style="padding-bottom:200px;">
+        <div class="landingtitle">Regitra</div>
+
+
+        <div class="banner header-text">
+            <div class="owl-banner owl-carousel">
+                <div class="banner-item-01">
+                    <div class="text-content">
+                        <h2>Techninės apžiūros</h2>
+                    </div>
+                </div>
+                <div class="banner-item-02">
+                    <div class="text-content">
+                        <h2>Pažymėjimai</h2>
+                    </div>
+                </div>
+                <div class="banner-item-03">
+                    <div class="text-content">
+                        <h2>Automobilių valdymas</h2>
+                    </div>
+                </div>
+                <div class="banner-item-04">
+                    <div class="text-content">
+                        <h2>Egzaminavimas</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
 
         <p>data from DB for testing purposes</p>
         @foreach (var item in Model)
@@ -17,3 +53,6 @@
     </div>
 
 </section>
+
+<script src="~/js/custom.js"></script>
+<script src="~/js/owl.js"></script>
