@@ -254,6 +254,21 @@ body {
     font-size: 18px;
 }
 
+/*registracija*/
+table {
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+}
+#logintable {
+    border-color: black;
+    border-width: 0px;
+    border-style: solid;
+}
+
+th {
+    text-align: center;
+}
 
 
 
