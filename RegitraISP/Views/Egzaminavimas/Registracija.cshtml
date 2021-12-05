@@ -1,0 +1,89 @@
+﻿@*          Egzaminavimas/Filialai         *@
+@model RegitraISP.ViewModels.KlientasEgzaminas
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Registracija";
+}
+@*<link rel="stylesheet" href="css/tooplate-style.css">*@
+
+<section id="section" class="bodysection">
+    <div class="container_white">
+        <section class="tm-margin-b-l">
+            <h2 class="pagetitle">Regitros filialai</h2>
+            <br />
+            <p class="page_infotext">Šiame puslapyje yra pateikiama informacija apie Regitros filialus. Filialai yra suskirstyti pagal miestus, kuriuose juos galima rasti.</p>
+            <br />
+            <br />
+
+            <p style="text-align: center; font-size: larger">Teorijos egzaminai</p>
+            <form method="post" asp-controller="Egzaminavimas" asp-action="Registracija">
+                <input type="hidden" name="name" value="@HttpContextAccessor.HttpContext.Session.GetString("username")" />
+                <table class="table table-dark testtable" style="background-color: #4ca1af; box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.8); ">
+                    <tr>
+                        <th>Data</th>
+                        <th>Miestas</th>
+                        <th>Gatvė</th>
+                        <th>Nr.</th>
+                        <th></th>
+                    </tr>
+                    @foreach (var egzaminas in Model.Egzaminai)
+                    {
+                        if (egzaminas.EgzaminoTipas == 1)
+                        {
+                <tr>
+                    <th>@Html.FixDateFormat(egzaminas.Data)</th>
+                    @foreach (var filialas in Model.Filialai)
+                    {
+                        if (filialas.IdFilialas == egzaminas.FkFilialasidFilialas)
+                        {
+                            <th>@Html.DisplayFor(modelItem => filialas.FkMiestaspavadinimas)</th>
+                            <th>@Html.DisplayFor(modelItem => filialas.Gatve)</th>
+                            <th>@Html.DisplayFor(modelItem => filialas.GatvesNr)</th>
+                            <th><button style="margin-left:0px;" class="btn btn-dark" type="submit" name="egz" value="@Html.DisplayFor(modelItem => egzaminas.IdEgzaminas)">Registruotis</button></th>
+                            break;
+                        }
+                    }
+                </tr>
+                        }
+                    }
+
+                </table>
+
+
+                <p style="text-align: center; font-size: larger">Praktikos egzaminai</p>
+                <table class="table table-hover table-dark" style="background-color: #4ca1af; box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.8); ">
+                    <tr>
+                        <th>Data</th>
+                        <th>Miestas</th>
+                        <th>Gatvė</th>
+                        <th>Nr.</th>
+                        <th></th>
+                    </tr>
+                    @foreach (var egzaminas in Model.Egzaminai)
+                    {
+                        if (egzaminas.EgzaminoTipas == 2)
+                        {
+                            <tr>
+                                <th>@Html.FixDateFormat(egzaminas.Data)</th>
+                                @foreach (var filialas in Model.Filialai)
+                                {
+                                    if (filialas.IdFilialas == egzaminas.FkFilialasidFilialas)
+                                    {
+                                        <th>@Html.DisplayFor(modelItem => filialas.FkMiestaspavadinimas)</th>
+                                        <th>@Html.DisplayFor(modelItem => filialas.Gatve)</th>
+                                        <th>@Html.DisplayFor(modelItem => filialas.GatvesNr)</th>
+                                        <th><input style="margin-left:0px;" class="btn btn-dark" type="submit" value="Registruotis" /></th>
+                                        break;
+                                    }
+                                }
+                            </tr>
+                        }
+                    }
+
+                </table>
+            </form>
+
+        </section>
+    </div>
+</section>
