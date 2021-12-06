@@ -58,8 +58,15 @@ namespace RegitraISP.Controllers
                 int id = int.Parse(date);
                 Egzamina egz = _context.Egzaminas.Find(id);
                 Klienta temp = _context.Klientas.Find(username);
-                temp.TeorijosEgzData = egz.Data;
-                _context.Klientas.Add(temp);
+                if(egz.EgzaminoTipas == 1)
+                {
+                    temp.TeorijosEgzData = egz.Data;
+                }
+                else
+                {
+                    temp.PraktikosEgzData = egz.Data;
+                }
+                _context.Klientas.Update(temp);
                 _context.SaveChanges();
             }
             catch
@@ -67,8 +74,7 @@ namespace RegitraISP.Controllers
                 TempData["Error"] = "Galite registruotis tik į vieną egzaminą";
                 return View("Registracija");
             }
-            string x = data["egz"].ToString();
-            return View();
+            return View("Index");
         }
 
 
