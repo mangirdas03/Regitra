@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2021 at 03:23 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.2
+-- Generation Time: Dec 06, 2021 at 09:40 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -106,6 +106,14 @@ CREATE TABLE `egzaminas` (
   `fk_Filialasid_Filialas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `egzaminas`
+--
+
+INSERT INTO `egzaminas` (`data`, `egzamino_tipas`, `id_Egzaminas`, `fk_Klientasasmens_kodas`, `fk_Filialasid_Filialas`) VALUES
+('2021-12-20', 1, 1, '22', 101),
+('2021-12-22', 2, 2, '22', 101);
+
 -- --------------------------------------------------------
 
 --
@@ -174,7 +182,7 @@ CREATE TABLE `klientas` (
 --
 
 INSERT INTO `klientas` (`asmens_kodas`, `slaptazodis`, `vardas`, `pavarde`, `tel_nr`, `el_pastas`, `teorijos_egz_data`, `praktikos_egz_data`, `teorijos_egz_islaikytas`, `praktikos_egz_islaikytas`, `nuotrauka`) VALUES
-('22', '$2a$11$JhwEn2CFudWkbJKf8T2/8uk', 'Remigijus', 'Viršila', '654321', 'testtest', NULL, NULL, 1, 1, NULL);
+('22', '$2a$11$JhwEn2CFudWkbJKf8T2/8uk', 'Remigijus', 'Viršila', '654321', 'testtest', '2021-12-20', '2021-12-22', 1, 1, NULL);
 
 -- --------------------------------------------------------
 
