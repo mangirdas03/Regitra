@@ -34,16 +34,29 @@ namespace RegitraISP.Controllers
             return View(fm);
         }
 
+        // Registracija i egzaminus
         public IActionResult Registracija()
         {
-            // Kuriamas Filialu ir Miestu viewmodelis
-            KlientasEgzaminas ke = new KlientasEgzaminas();
-            ke.Filialai = _context.Filialas.ToList();
-            ke.Egzaminai = _context.Egzaminas.ToList();
-            ke.Klientai = _context.Klientas.ToList();
-            return View(ke);
+            // Praleidziamas tik useris.
+            if(HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 0)
+            {
+                // Kuriamas Filialu ir Miestu viewmodelis
+                KlientasEgzaminas ke = new KlientasEgzaminas();
+                ke.Filialai = _context.Filialas.ToList();
+                ke.Egzaminai = _context.Egzaminas.ToList();
+                ke.Klientas = _context.Klientas.Where(a => a.AsmensKodas.Equals(HttpContext.Session.GetString("username"))).FirstOrDefault();
+                return View(ke);
+            }
+            else if(HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 1)
+            {
+// Alertas darbuotojui?
+                return RedirectToAction("EmployeeDashboard", "Home");
+            }
+            else return RedirectToAction("Login", "Home");
+
         }
 
+        // Registracija i egzaminus
         [HttpPost]
         public IActionResult Registracija(IFormCollection data)
         {
@@ -56,25 +69,44 @@ namespace RegitraISP.Controllers
                 string username = data["name"].ToString();
                 string date = data["egz"].ToString();
                 int id = int.Parse(date);
-                Egzamina egz = _context.Egzaminas.Find(id);
                 Klienta temp = _context.Klientas.Find(username);
-                if(egz.EgzaminoTipas == 1)
+                if(id == 0)
                 {
-                    temp.TeorijosEgzData = egz.Data;
+                    temp.TeorijosEgzData = null;
+                    _context.Klientas.Update(temp);
+                    _context.SaveChanges();
+                }
+                else if(id == -1)
+                {
+                    temp.PraktikosEgzData = null;
+                    _context.Klientas.Update(temp);
+                    _context.SaveChanges();
                 }
                 else
                 {
-                    temp.PraktikosEgzData = egz.Data;
+                    Egzamina egz = _context.Egzaminas.Find(id);
+                    if(egz.EgzaminoTipas == 1)
+                    {
+                        temp.TeorijosEgzData = egz.Data;
+                    }
+                    else
+                    {
+                        temp.PraktikosEgzData = egz.Data;
+                    }
+                    _context.Klientas.Update(temp);
+                    _context.SaveChanges();
                 }
-                _context.Klientas.Update(temp);
-                _context.SaveChanges();
+                
             }
             catch
             {
                 TempData["Error"] = "Galite registruotis tik į vieną egzaminą";
                 return View("Registracija");
             }
-            return View("Index");
+            //return View("Index");
+            Task.Delay(1600).Wait();
+            return RedirectToAction("Registracija", "Egzaminavimas");
+            //return RedirectToAction("Index");
         }
 
 

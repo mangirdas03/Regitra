@@ -10,11 +10,11 @@
         <h1 class="display-4">User dashboard</h1>
 
         <p>Sveiki @Html.DisplayFor(modelItem => Model.Vardas) @Html.DisplayFor(modelItem => Model.Pavarde)!</p>
-        <p>Vardas ir slaptazodis:</p>
+        <p>Vardas:</p>
         @HttpContextAccessor.HttpContext.Session.GetString("username")
         @*@HttpContextAccessor.HttpContext.Session.GetString("passw")*@
 
-        <p><a class="btn btn-danger" href="@Url.Action("Logout", "Home")">Logout</a></p>
+        <p><a class="btn btn-danger" href="@Url.Action("Logout", "Home")">Atsijungti</a></p>
 
     </div>
 </section>

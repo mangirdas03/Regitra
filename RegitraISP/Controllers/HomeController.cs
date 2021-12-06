@@ -88,7 +88,7 @@ namespace RegitraISP.Controllers
 
         public ActionResult UserDashboard()
         {
-            if (HttpContext.Session.GetString("username") != null)
+            if (HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 0)
             {
                 var loggedUser = _context.Klientas.Where(a => a.AsmensKodas.Equals(HttpContext.Session.GetString("username")) && a.Slaptazodis.Equals(HttpContext.Session.GetString("passw"))).FirstOrDefault();
                 return View(loggedUser);

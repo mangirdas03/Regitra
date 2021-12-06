@@ -1,5 +1,6 @@
 ﻿@*          Egzaminavimas         *@
-@*@model IEnumerable<RegitraISP.Models.Miesta>*@
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 @{
     ViewData["Title"] = "Egzaminavimas";
 }
@@ -14,20 +15,23 @@
             <header>
                 <h2 class="pagetitle2">Egzaminavimas</h2>
             </header>
-            <br/>
+            <br />
             <p class="page_infotext">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
             <div class="tm-gallery">
                 <div class="row">
-                    <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
-                        <a style="text-decoration:none" href="@Url.Action("Registracija", "Egzaminavimas")">
-                            <div class="tm-gallery-item-overlay">
-                                <img src="img/10.jpg" alt="Image" class="img-fluid tm-img-center">
-                            </div>
+                    @if (@HttpContextAccessor.HttpContext.Session.GetString("username") != null && @HttpContextAccessor.HttpContext.Session.GetInt32("isEmployee") == 0)
+                    { 
+                        <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
+                            <a style="text-decoration:none" href="@Url.Action("Registracija", "Egzaminavimas")">
+                                <div class="tm-gallery-item-overlay">
+                                    <img src="img/10.jpg" alt="Image" class="img-fluid tm-img-center">
+                                </div>
 
-                            <p class="tm-figcaption">Registracija egzaminui</p>
-                        </a>
-                    </figure>
+                                <p class="tm-figcaption">Registracija egzaminui</p>
+                            </a>
+                        </figure>
+                    }
                     <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
                         <a style="text-decoration:none" href="@Url.Action("Filialai", "Egzaminavimas")">
                             <div class="tm-gallery-item-overlay">

@@ -8,9 +8,14 @@ namespace RegitraISP.Helper
 {
     public static class CustomHTMLHelper
     {
-        public static string FixDateFormat(this IHtmlHelper htmlHelper, DateTime date)
+        public static string FixDateFormat(this IHtmlHelper htmlHelper, DateTime? date)
         {
-            return date.ToShortDateString();
+            DateTime d = new DateTime();
+            if (date != null)
+            {
+                d = (DateTime)date;
+            }
+            return d.ToShortDateString();
         }
     }
 }

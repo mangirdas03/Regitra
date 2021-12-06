@@ -10,55 +10,85 @@
 <section id="section" class="bodysection">
     <div class="container_white">
         <section class="tm-margin-b-l">
-            <h2 class="pagetitle">Regitros filialai</h2>
+            <h2 class="pagetitle">Registracija į egzaminus</h2>
             <br />
-            <p class="page_infotext">Šiame puslapyje yra pateikiama informacija apie Regitros filialus. Filialai yra suskirstyti pagal miestus, kuriuose juos galima rasti.</p>
+            <br />
+            <p class="page_infotext">Šiame puslapyje yra pateikiama informacija apie teorijos bei praktikos egzaminus. Jei norite laikyti egzaminą, išsirinkite sau tinkamą laiką ir užsiregistruokite.</p>
             <br />
             <br />
 
             <p style="text-align: center; font-size: larger">Teorijos egzaminai</p>
-            <form method="post" asp-controller="Egzaminavimas" asp-action="Registracija">
+            <form method="post" asp-controller="Egzaminavimas" asp-action="Registracija" id="mf">
                 <input type="hidden" name="name" value="@HttpContextAccessor.HttpContext.Session.GetString("username")" />
-                <table class="table table-dark testtable" style="background-color: #4ca1af; box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.8); ">
+                <table class="table table-hover table-dark" style="background-color: #4ca1af; box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.8); ">
+                    <colgroup>
+                        <col span="1" style="width: 15%;">
+                        <col span="1" style="width: 15%;">
+                        <col span="1" style="width: 20%;">
+                        <col span="1" style="width: 10%;">
+                        <col span="1" style="width: 40%;">
+                    </colgroup>
                     <tr>
                         <th>Data</th>
                         <th>Miestas</th>
                         <th>Gatvė</th>
                         <th>Nr.</th>
-                        <th></th>
+                        <th>Registracija</th>
                     </tr>
                     @foreach (var egzaminas in Model.Egzaminai)
                     {
                         if (egzaminas.EgzaminoTipas == 1)
                         {
-                <tr>
-                    <th>@Html.FixDateFormat(egzaminas.Data)</th>
-                    @foreach (var filialas in Model.Filialai)
-                    {
-                        if (filialas.IdFilialas == egzaminas.FkFilialasidFilialas)
-                        {
-                            <th>@Html.DisplayFor(modelItem => filialas.FkMiestaspavadinimas)</th>
-                            <th>@Html.DisplayFor(modelItem => filialas.Gatve)</th>
-                            <th>@Html.DisplayFor(modelItem => filialas.GatvesNr)</th>
-                            <th><button style="margin-left:0px;" class="btn btn-dark" type="submit" name="egz" value="@Html.DisplayFor(modelItem => egzaminas.IdEgzaminas)">Registruotis</button></th>
-                            break;
-                        }
-                    }
-                </tr>
+                            <tr>
+                                <th>@Html.FixDateFormat(egzaminas.Data)</th>
+                                @foreach (var filialas in Model.Filialai)
+                                {
+                                    if (filialas.IdFilialas == egzaminas.FkFilialasidFilialas)
+                                    {
+                                        <th>@Html.DisplayFor(modelItem => filialas.FkMiestaspavadinimas)</th>
+                                        <th>@Html.DisplayFor(modelItem => filialas.Gatve)</th>
+                                        <th>@Html.DisplayFor(modelItem => filialas.GatvesNr)</th>
+                                        @if (Model.Klientas.TeorijosEgzIslaikytas == false)
+                                        {
+                                            if (!@Html.FixDateFormat(Model.Klientas.TeorijosEgzData).Equals(@Html.FixDateFormat(egzaminas.Data)))
+                                            {
+                                                <th><button id="btn_reg" style="margin-left:0px;" class="btn btn-dark" type="submit" name="egz" value="@Html.DisplayFor(modelItem => egzaminas.IdEgzaminas)">Registruotis</button></th>
+                                            }
+                                            else
+                                            {
+                                                <th><button id="btn_reg" style="margin-left:0px;" class="btn btn-danger" type="submit" name="egz" value="0">Atšaukti registraciją</button></th>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <th><p>Teorijos egzaminą esate išlaikę</p></th>
+                                        }
+                                        break;
+                                    }
+                                }
+                            </tr>
                         }
                     }
 
                 </table>
 
-
+                <br />
+                <br />
                 <p style="text-align: center; font-size: larger">Praktikos egzaminai</p>
                 <table class="table table-hover table-dark" style="background-color: #4ca1af; box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.8); ">
+                    <colgroup>
+                        <col span="1" style="width: 15%;">
+                        <col span="1" style="width: 15%;">
+                        <col span="1" style="width: 20%;">
+                        <col span="1" style="width: 10%;">
+                        <col span="1" style="width: 40%;">
+                    </colgroup>
                     <tr>
                         <th>Data</th>
                         <th>Miestas</th>
                         <th>Gatvė</th>
                         <th>Nr.</th>
-                        <th></th>
+                        <th>Registracija</th>
                     </tr>
                     @foreach (var egzaminas in Model.Egzaminai)
                     {
@@ -73,7 +103,22 @@
                                         <th>@Html.DisplayFor(modelItem => filialas.FkMiestaspavadinimas)</th>
                                         <th>@Html.DisplayFor(modelItem => filialas.Gatve)</th>
                                         <th>@Html.DisplayFor(modelItem => filialas.GatvesNr)</th>
-                                        <th><button style="margin-left:0px;" class="btn btn-dark" type="submit" name="egz" value="@Html.DisplayFor(modelItem => egzaminas.IdEgzaminas)">Registruotis</button></th>
+                                        @*<th><button style="margin-left:0px;" class="btn btn-dark" type="submit" name="egz" value="@Html.DisplayFor(modelItem => egzaminas.IdEgzaminas)">Registruotis</button></th>*@
+                                        @if (Model.Klientas.PraktikosEgzIslaikytas == false)
+                                        {
+                                            if (!@Html.FixDateFormat(Model.Klientas.PraktikosEgzData).Equals(@Html.FixDateFormat(egzaminas.Data)))
+                                            {
+                                                <th><button id="btn_reg" style="margin-left:0px;" class="btn btn-dark" type="submit" name="egz" value="@Html.DisplayFor(modelItem => egzaminas.IdEgzaminas)">Registruotis</button></th>
+                                            }
+                                            else
+                                            {
+                                                <th><button id="btn_reg" style="margin-left:0px;" class="btn btn-danger" type="submit" name="egz" value="-1">Atšaukti registraciją</button></th>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <th><p>Praktikos egzaminą esate išlaikę</p></th>
+                                        }
                                         break;
                                     }
                                 }
@@ -87,3 +132,18 @@
         </section>
     </div>
 </section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#mf").submit(function () {
+            Swal.fire({
+                icon: 'success',
+                title: 'Operacija sėkminga!',
+                showConfirmButton: false,
+                timer: 1600
+            })
+        });
+    });
+</script>

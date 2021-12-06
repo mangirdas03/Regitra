@@ -4,7 +4,7 @@
     ViewData["Title"] = "Filialai";
 }
 @*<link rel="stylesheet" href="css/tooplate-style.css">*@
-
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 <section id="section" class="bodysection">
     <div class="container_white">
         <section class="tm-margin-b-l">
@@ -17,7 +17,9 @@
             @foreach (var miestas in Model.Miestai)
             {
                 <br />
-                <p class="cityname">@Html.DisplayFor(modelItem => miestas.Pavadinimas)</p><br/>
+                <p class="cityname">
+                    <i class="fas fa-angle-right"></i>&nbsp; @Html.DisplayFor(modelItem => miestas.Pavadinimas)
+                </p><br/>
                 foreach (var filialas in Model.Filialai)
                 {
                     if (filialas.FkMiestaspavadinimas == miestas.Pavadinimas)
