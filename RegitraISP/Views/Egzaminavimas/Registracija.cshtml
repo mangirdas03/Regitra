@@ -73,7 +73,7 @@
                                         <th>@Html.DisplayFor(modelItem => filialas.FkMiestaspavadinimas)</th>
                                         <th>@Html.DisplayFor(modelItem => filialas.Gatve)</th>
                                         <th>@Html.DisplayFor(modelItem => filialas.GatvesNr)</th>
-                                        <th><input style="margin-left:0px;" class="btn btn-dark" type="submit" value="Registruotis" /></th>
+                                        <th><button style="margin-left:0px;" class="btn btn-dark" type="submit" name="egz" value="@Html.DisplayFor(modelItem => egzaminas.IdEgzaminas)">Registruotis</button></th>
                                         break;
                                     }
                                 }
