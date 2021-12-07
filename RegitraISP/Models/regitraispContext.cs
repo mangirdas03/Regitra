@@ -118,9 +118,10 @@ namespace RegitraISP.Models
                     .HasColumnName("pirmoji_reg_salis");
 
                 entity.Property(e => e.Sdk)
-                    .IsRequired()
+                    .HasDefaultValueSql("'NULL'")    
                     .HasMaxLength(9)
                     .HasColumnName("sdk");
+
 
                 entity.Property(e => e.ValstybiniaiNumeriai)
                     .IsRequired()

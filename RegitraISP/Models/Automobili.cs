@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -12,11 +13,10 @@ namespace RegitraISP.Models
             AutomobilioPasas = new HashSet<AutomobilioPasa>();
             TechnineApziuras = new HashSet<TechnineApziura>();
         }
-
         public string Vin { get; set; }
         public string Marke { get; set; }
         public string Modelis { get; set; }
-        public string Sdk { get; set; }
+        public string? Sdk { get; set; }
         public DateTime PagaminimoMetai { get; set; }
         public string PaskutineRegSalis { get; set; }
         public string PirmojiRegSalis { get; set; }

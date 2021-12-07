@@ -1,0 +1,98 @@
+﻿@model RegitraISP.ViewModels.KlientasAutomobilisPasas
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@*
+
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Deklaravimas";
+}
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+<section id="section" class="bodysection">
+    <div class="container_white">
+        <section class="tm-margin-b-l">
+            <h2 class="pagetitle">Deklaravimas</h2>
+            <br />
+            <p class="page_infotext">Šiame puslapyje yra pateikiama informacija apie Regitros filialus. Filialai yra suskirstyti pagal miestus, kuriuose juos galima rasti.</p>
+            <br />
+            <br />
+            <div style="padding-left:200px">
+                <form method="post" asp-controller="AutomobiliuValdymas" asp-action="Deklaravimas" id="av">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="tabelio_nr" value="@HttpContextAccessor.HttpContext.Session.GetString("username")" />
+                    <p><h2>Pasirinkite klientą:</h2></p>
+                    @Html.DropDownListFor(m => m.asmens_kodas, ViewBag.kap as IEnumerable<SelectListItem>, "pasirinkite")
+                    <br />
+                    <br />
+                    <p style="font-size: larger">VIN</p>
+                    <input type="text" asp-for="Vin" value="" />
+                    <span asp-validation-for="Vin" class="text-danger"></span>
+                    <br />
+                    <br />
+                    <p style="font-size: larger">Markė</p>
+                    <input type="text" asp-for="Marke" value="" />
+                    <span asp-validation-for="Marke" class="text-danger"></span>
+                    <br />
+                    <br />
+                    <p style="font-size: larger">Modelis</p>
+                    <input type="text" asp-for="Modelis" value="" />
+                    <span asp-validation-for="Modelis" class="text-danger"></span>
+                    <br />
+                    <br />
+                    <p style="font-size: larger">Pagaminimo metai</p>
+                    <input type="date" asp-for="PagaminimoMetai" value="" />
+                    <span asp-validation-for="PagaminimoMetai" class="text-danger"></span>
+                    <br />
+                    <br />
+                    <p style="font-size: larger">Paskutinė registruota šalis</p>
+                    <input type="text" asp-for="PaskutineRegSalis" value="" />
+                    <span asp-validation-for="PaskutineRegSalis" class="text-danger"></span>
+                    <br />
+                    <br />
+                    <p style="font-size: larger">Pirmoji registruota šalis</p>
+                    <input type="text" asp-for="PirmojiRegSalis" value="" />
+                    <span asp-validation-for="PirmojiRegSalis" class="text-danger"></span>
+                    <br />
+                    <br />
+                    <p style="font-size: larger">Valstybiniai numeriai</p>
+                    <input type="text" asp-for="ValstybiniaiNumeriai" value="" />
+                    <span asp-validation-for="ValstybiniaiNumeriai" class="text-danger"></span>
+                    <br />
+                    <br />
+                    <p style="font-size: larger">Automobilio spalva</p>
+                    <input type="text" asp-for="AutomobilioSpalva" value="" />
+                    <span asp-validation-for="AutomobilioSpalva" class="text-danger"></span>
+                    <br />
+                    <br />
+                    <p style="font-size: larger">Kuro tipas</p>
+                    <input type="text" asp-for="KuroTipas" value="" />
+                    <span asp-validation-for="KuroTipas" class="text-danger"></span>
+                    <br />
+                    <br />
+                    <p style="font-size: larger">CO₂ kiekis</p>
+                    <input type="text" asp-for="Co2Kiekis" value="" />
+                    <span asp-validation-for="Co2Kiekis" class="text-danger"></span>
+                    <br />
+                    <br />
+                    <p style="font-size: larger">Svoris</p>
+                    <input type="text" asp-for="Svoris" value="" />
+                    <span asp-validation-for="Svoris" class="text-danger"></span>
+                    <br />
+                    <br />
+                    <p style="font-size: larger">Variklio litražas</p>
+                    <input type="text" asp-for="VariklioLitrazas" value="" />
+                    <span asp-validation-for="VariklioLitrazas" class="text-danger"></span>
+                    <br />
+                    <br />
+                    <p style="font-size: larger">Kilovatų skaičius</p>
+                    <input type="text" asp-for="KilovatuSkaicius" value="" />
+                    <span asp-validation-for="KilovatuSkaicius" class="text-danger"></span>
+                    <br />
+                    <br />
+                    <button id="btn_reg" style="margin-left:0px;" class="btn btn-dark" type="submit" name="egz" value="">OK</button>
+                </form>
+            </div>
+        </section>
+    </div>
+</section>

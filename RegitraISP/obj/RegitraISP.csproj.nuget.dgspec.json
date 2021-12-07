@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP\\Desktop\\Regitra\\RegitraISP\\RegitraISP.csproj": {}
+    "C:\\Users\\redas\\Desktop\\RegistraISP\\RegitraISP\\RegitraISP.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP\\Desktop\\Regitra\\RegitraISP\\RegitraISP.csproj": {
+    "C:\\Users\\redas\\Desktop\\RegistraISP\\RegitraISP\\RegitraISP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\Desktop\\Regitra\\RegitraISP\\RegitraISP.csproj",
+        "projectUniqueName": "C:\\Users\\redas\\Desktop\\RegistraISP\\RegitraISP\\RegitraISP.csproj",
         "projectName": "RegitraISP",
-        "projectPath": "C:\\Users\\HP\\Desktop\\Regitra\\RegitraISP\\RegitraISP.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\Desktop\\Regitra\\RegitraISP\\obj\\",
+        "projectPath": "C:\\Users\\redas\\Desktop\\RegistraISP\\RegitraISP\\RegitraISP.csproj",
+        "packagesPath": "C:\\Users\\redas\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\redas\\Desktop\\RegistraISP\\RegitraISP\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\redas\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -95,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
