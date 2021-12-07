@@ -21,7 +21,7 @@
             <div class="tm-gallery">
                 <div class="row">
                     @if (@HttpContextAccessor.HttpContext.Session.GetString("username") != null && @HttpContextAccessor.HttpContext.Session.GetInt32("isEmployee") == 0)
-                    { 
+                    {
                         <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
                             <a style="text-decoration:none" href="@Url.Action("Registracija", "Egzaminavimas")">
                                 <div class="tm-gallery-item-overlay">
@@ -29,6 +29,14 @@
                                 </div>
 
                                 <p class="tm-figcaption">Registracija egzaminui</p>
+                            </a>
+                        </figure>
+                        <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
+                            <a style="text-decoration:none" href="@Url.Action("Apeliacija", "Egzaminavimas")">
+                                <div class="tm-gallery-item-overlay">
+                                    <img src="img/4.jpg" alt="Image" class="img-fluid tm-img-center">
+                                </div>
+                                <p class="tm-figcaption">Apeliacijos</p>
                             </a>
                         </figure>
                     }
@@ -41,27 +49,11 @@
                         </a>
                     </figure>
                     <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
-                        <a style="text-decoration:none" href="#">
-                            <div class="tm-gallery-item-overlay">
-                                <img src="img/4.jpg" alt="Image" class="img-fluid tm-img-center">
-                            </div>
-                            <p class="tm-figcaption">Apeliacijos</p>
-                        </a>
-                    </figure>
-                    <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
-                        <a style="text-decoration:none" href="#">
+                        <a style="text-decoration:none" href="@Url.Action("Demo", "Egzaminavimas")">
                             <div class="tm-gallery-item-overlay">
                                 <img src="img/7.jpg" alt="Image" class="img-fluid tm-img-center">
                             </div>
                             <p class="tm-figcaption">Demo teorijos egzaminas</p>
-                        </a>
-                    </figure>
-                    <figure class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <a style="text-decoration:none" href="#">
-                            <div class="tm-gallery-item-overlay">
-                                <img src="img/9.jpg" alt="Image" class="img-fluid tm-img-center">
-                            </div>
-                            <p class="tm-figcaption">Egzaminai</p>
                         </a>
                     </figure>
 

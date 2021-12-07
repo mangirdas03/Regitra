@@ -494,3 +494,5 @@ C:\Users\gladi\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\RegitraISP.dll
 C:\Users\gladi\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\ref\RegitraISP.dll
 C:\Users\gladi\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\RegitraISP.pdb
 C:\Users\gladi\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\RegitraISP.genruntimeconfig.cache
+C:\Users\HP\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\Egzaminavimas\Apeliacija.cshtml.g.cs
+C:\Users\HP\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\Egzaminavimas\Demo.cshtml.g.cs

@@ -1,0 +1,51 @@
+﻿@*          Egzaminavimas/Filialai         *@
+@model RegitraISP.ViewModels.KlientasEgzaminas
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Apeliacija";
+}
+@*<link rel="stylesheet" href="css/tooplate-style.css">*@
+
+<section id="section" class="bodysection">
+    <div class="container_white">
+        <section class="tm-margin-b-l">
+            <h2 class="pagetitle">Apeliacija</h2>
+            <br />
+            <br />
+            <p class="page_infotext">Šiame puslapyje yra pateikiama informacija apie teorijos bei praktikos egzaminus. Jei norite laikyti egzaminą, išsirinkite sau tinkamą laiką ir užsiregistruokite.</p>
+            <br />
+            <br />
+
+            <p style="text-align: center; font-size: larger">Apeliacija</p>
+            <form method="post" asp-controller="Egzaminavimas" asp-action="Apeliacija" id="mf">
+                <input type="hidden" name="name" value="@HttpContextAccessor.HttpContext.Session.GetString("username")" />
+                <p style="font-size: larger">Priežastis</p>
+                <input type="text" name="priezastis" value="" />
+                <br />
+                <br />
+                <p style="font-size: larger">Tikslus situacijos apibūdinimas</p>
+                <textarea id="text" name="tekstas" rows="10" cols="50"></textarea>
+                <br />
+                <br />
+                <button id="btn_snd" style="margin-left:0px;" class="btn btn-danger" type="submit" name="send" value="1">Siųsti apeliaciją</button>
+            </form>
+
+        </section>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#mf").submit(function () {
+            Swal.fire({
+                icon: 'success',
+                title: 'Operacija sėkminga!',
+                showConfirmButton: false,
+                timer: 1600
+            })
+        });
+    });
+</script>
