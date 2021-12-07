@@ -109,6 +109,66 @@ namespace RegitraISP.Controllers
             //return RedirectToAction("Index");
         }
 
+        public IActionResult Apeliacija()
+        {
+            if (HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 0)
+            {
+                // Kuriamas Filialu ir Miestu viewmodelis
+                KlientasEgzaminas ke = new KlientasEgzaminas();
+                ke.Filialai = _context.Filialas.ToList();
+                ke.Egzaminai = _context.Egzaminas.ToList();
+                ke.Klientas = _context.Klientas.Where(a => a.AsmensKodas.Equals(HttpContext.Session.GetString("username"))).FirstOrDefault();
+                return View(ke);
+            }
+            else if (HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 1)
+            {
+                // Alertas darbuotojui?
+                return RedirectToAction("EmployeeDashboard", "Home");
+            }
+            else return RedirectToAction("Login", "Home");
+        }
 
+        [HttpPost]
+        public IActionResult Apeliacija(IFormCollection data)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            try
+            {
+                string username = data["name"].ToString();
+                string reason = data["priezastis"].ToString();
+                string text = data["tekstas"].ToString();
+                Apeliacija temp = new Apeliacija();
+                temp.FkKlientasasmensKodas = username;
+                temp.Priezastis = reason;
+                temp.Tekstas = text;
+                Random rnd = new Random();
+                int id = rnd.Next(1, 500);
+                while(_context.Apeliacijas.Find(id) != null)
+                {
+                    id = rnd.Next(1, 500);
+                }
+                temp.IdApeliacija = id;
+                _context.Apeliacijas.Add(temp);
+                _context.SaveChanges();
+
+            }
+            catch
+            {
+                TempData["Error"] = "Galite registruotis tik į vieną egzaminą";
+                return View("Apeliacija");
+            }
+            //return View("Index");
+            Task.Delay(1600).Wait();
+            return RedirectToAction("Apeliacija", "Egzaminavimas");
+            //return RedirectToAction("Index");
+        }
+
+        public IActionResult Demo()
+        {
+            return View();
+        }
     }
 }

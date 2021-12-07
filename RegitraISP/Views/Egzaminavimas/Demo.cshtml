@@ -1,0 +1,97 @@
+﻿@*          Egzaminavimas/Filialai         *@
+@model RegitraISP.ViewModels.KlientasEgzaminas
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Demo";
+}
+@*<link rel="stylesheet" href="css/tooplate-style.css">*@
+
+<section id="section" class="bodysection">
+    <div class="container_white">
+        <section class="tm-margin-b-l">
+            <h2 class="pagetitle">Apeliacija</h2>
+            <br />
+            <br />
+            <p class="page_infotext">Šiame puslapyje yra pateikiama informacija apie teorijos bei praktikos egzaminus. Jei norite laikyti egzaminą, išsirinkite sau tinkamą laiką ir užsiregistruokite.</p>
+            <br />
+            <br />
+
+            <p style="text-align: center; font-size: larger">Apeliacija</p>
+            <form method="post" asp-controller="Egzaminavimas" asp-action="Demo" id="mf">
+                <p style="font-size: larger">1. Ties kuriuo šviesoforo signalu galima kirsti sankryžą?</p>
+                <p style="font-size: larger"><input type="radio" name="opt1" value="0" /> Raudonu</p>
+                <p style="font-size: larger"><input type="radio" name="opt1" value="0" /> Geltonu</p>
+                <p style="font-size: larger"><input type="radio" id="q1" name="opt1" value="1" /> Žaliu</p>
+                <p style="font-size: larger"><input type="radio" name="opt1" value="0" /> Nesvarbu</p>
+                <br />
+                <br />
+                <p style="font-size: larger">2. Ar būtina dėvėti saugos diržą vairuojant?</p>
+                <p style="font-size: larger"><input type="radio" id="q2" name="opt2" value="1" /> Taip</p>
+                <p style="font-size: larger"><input type="radio" name="opt2" value="0" /> Ne</p>
+                <br />
+                <br />
+                <p style="font-size: larger">3. Kokiu greičiu gali važiuoti pradedantysis, neturintis 2 metų patirties, mieste?</p>
+                <p style="font-size: larger"><input type="radio" name="opt3" value="0" /> 40 km/h</p>
+                <p style="font-size: larger"><input type="radio" id="q3" name="opt3" value="1" /> 50 km/h</p>
+                <p style="font-size: larger"><input type="radio" name="opt3" value="0" /> 60 km/h</p>
+                <p style="font-size: larger"><input type="radio" name="opt3" value="0" /> 70 km/h</p>
+                <br />
+                <br />
+                <p style="font-size: larger">4. Ar būtina pėsčiųjų perėjoje praleisti pėstyjį?</p>
+                <p style="font-size: larger"><input type="radio" name="opt4" value="0" /> Ne</p>
+                <p style="font-size: larger"><input type="radio" id="q4" name="opt4" value="1" /> Taip</p>
+                <br />
+                <br />
+                <p style="font-size: larger">5. Kokiu greičiu gali važiuoti vairuotojas, turintis 2 metų patirtį, asfaltuotame kelyje?</p>
+                <p style="font-size: larger"><input type="radio" id="q5" name="opt5" value="1" /> 90 km/h</p>
+                <p style="font-size: larger"><input type="radio" name="opt5" value="0" /> 100 km/h</p>
+                <p style="font-size: larger"><input type="radio" name="opt5" value="0" /> 80 km/h</p>
+                <p style="font-size: larger"><input type="radio" name="opt5" value="0" /> 110 km/h</p>
+                <br />
+                <br />
+                <button id="btn_end" style="margin-left:0px;" class="btn btn-danger" type="button" onclick="" name="end" value="1">Baigti testą</button>
+            </form>
+
+        </section>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#mf").submit(function () {
+            Swal.fire({
+                icon: 'success',
+                title: 'Operacija sėkminga!',
+                showConfirmButton: false,
+                timer: 1600
+            })
+        });
+        $("#btn_end").click(function () {
+            var count = 0;
+            if ($("#q1").is(':checked')) {
+                count++;
+            }
+            if ($("#q2").is(':checked')) {
+                count++;
+            }
+            if ($("#q3").is(':checked')) {
+                count++;
+            }
+            if ($("#q4").is(':checked')) {
+                count++;
+            }
+            if ($("#q5").is(':checked')) {
+                count++;
+            }
+            Swal.fire({
+                icon: 'info',
+                title: 'Teisingai atsakei į ' + count + '/5 klausimų',
+                showConfirmButton: false,
+                timer: 1600
+            })
+        });
+    });
+</script>
