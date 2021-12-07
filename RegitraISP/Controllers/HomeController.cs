@@ -67,6 +67,7 @@ namespace RegitraISP.Controllers
                     HttpContext.Session.SetString("username", user.Name.ToString());
                     //HttpContext.Session.SetString("passw", user.Password.ToString()); // Illegal?
                     HttpContext.Session.SetInt32("isEmployee", 1);
+                    HttpContext.Session.SetInt32("EmployeeID", checkEmpolyee.TabelioNr);
                     return RedirectToAction("EmployeeDashboard");
                 }
             }
