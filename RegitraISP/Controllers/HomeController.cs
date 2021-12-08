@@ -60,6 +60,7 @@ namespace RegitraISP.Controllers
                     HttpContext.Session.SetString("username", user.Name.ToString());
                     //HttpContext.Session.SetString("passw", user.Password.ToString()); // Illegal?
                     HttpContext.Session.SetInt32("isEmployee", 0);
+                    HttpContext.Session.SetString("userid", checkUser.AsmensKodas);
                     return RedirectToAction("UserDashboard");
                 }
                 else if(checkEmpolyee != null && !BCryptNet.Verify(user.Password, checkEmpolyee.Slaptazodis))

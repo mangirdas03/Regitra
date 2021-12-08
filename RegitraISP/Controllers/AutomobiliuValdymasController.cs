@@ -37,6 +37,40 @@ namespace RegitraISP.Controllers
         {
             return View();
         }
+        public IActionResult SDK()
+        {
+            KlientasAutomobilisPasas kap = new KlientasAutomobilisPasas();
+            List<Automobili> allCars = _context.Automobilis.ToList();
+            List<Automobili> clientCars = new List<Automobili>();
+            var userid = HttpContext.Session.GetString("userid");
+            foreach (Automobili car in allCars)
+            {
+                if(car.FkKlientasasmensKodas == userid)
+                {
+                    clientCars.Add(car);
+                }
+            }
+            kap.Automobiliai = clientCars;
+            
+            return View(kap);
+        }
+        [HttpPost]
+        public IActionResult SDK(KlientasAutomobilisPasas data)
+        {
+            var vin = data.Vin;
+            Random rand = new Random();
+            string sdk = "";
+            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            for (int i = 0; i < 9; i++)
+            {
+                sdk += chars[rand.Next(0, chars.Length)];
+            }
+            Automobili auto = _context.Automobilis.Find(vin);
+            auto.Sdk = sdk;
+            _context.Automobilis.Update(auto);
+            _context.SaveChanges();
+            return RedirectToAction("Index", "AutomobiliuValdymas");
+        }
         public IActionResult Deklaravimas()
         {
             ViewBag.kap = users;

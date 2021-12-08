@@ -11,6 +11,7 @@ namespace RegitraISP.ViewModels
     {
 
         public List<Klienta> Klientai { get; set; }
+        public List<Automobili> Automobiliai { get; set; }
 
         [Required(ErrorMessage = "Privalomas laukas!")]
         [MaxLength(12, ErrorMessage = "Asmens kodas negali viršyti 12 simbolių!")]

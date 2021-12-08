@@ -648,3 +648,7 @@ C:\Users\HP\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\AutomobiliuV
 C:\Users\HP\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\AutomobiliuValdymas\Perleidimas.cshtml.g.cs
 C:\Users\HP\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\AutomobiliuValdymas\Numeriai.cshtml.g.cs
 C:\Users\HP\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\AutomobiliuValdymas\Atnaujinimas.cshtml.g.cs
+C:\Users\redas\Desktop\RegistraISP\RegitraISP\obj\Debug\net5.0\Razor\Views\AutomobiliuValdymas\Atnaujinimas.cshtml.g.cs
+C:\Users\redas\Desktop\RegistraISP\RegitraISP\obj\Debug\net5.0\Razor\Views\AutomobiliuValdymas\Numeriai.cshtml.g.cs
+C:\Users\redas\Desktop\RegistraISP\RegitraISP\obj\Debug\net5.0\Razor\Views\AutomobiliuValdymas\Perleidimas.cshtml.g.cs
+C:\Users\redas\Desktop\RegistraISP\RegitraISP\obj\Debug\net5.0\Razor\Views\AutomobiliuValdymas\SDK.cshtml.g.cs
