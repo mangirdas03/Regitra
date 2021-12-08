@@ -1,0 +1,35 @@
+﻿@model RegitraISP.Models.Automobili
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@*
+
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Numeriai";
+}
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+<section id="section" class="bodysection">
+    <div class="container_white">
+        <section class="tm-margin-b-l">
+            <h2 class="pagetitle">Numerių redagavimas</h2>
+            <br />
+            <p class="page_infotext">Šiame puslapyje yra pateikiama informacija apie Regitros filialus. Filialai yra suskirstyti pagal miestus, kuriuose juos galima rasti.</p>
+            <br />
+            <br />
+            <div style="padding-left:200px">
+                <form method="post" asp-controller="AutomobiliuValdymas" asp-action="Numeriai" id="av">
+                    <p><h2>Pasirinkite automobilį:</h2></p>
+                    @Html.DropDownListFor(m => m.Vin, ViewBag.car as IEnumerable<SelectListItem>, "pasirinkite")
+                    <br />
+                    <br />
+                    <p style="font-size: larger">Įveskite naujus valstybinius numerius:</p>
+                    <input type="text" asp-for="ValstybiniaiNumeriai" value="" />
+                    <br />
+                    <br />
+                    <button id="btn_reg" style="margin-left:0px;" class="btn btn-dark" type="submit" name="egz" value="">OK</button>
+                </form>
+            </div>
+        </section>
+    </div>
+</section>

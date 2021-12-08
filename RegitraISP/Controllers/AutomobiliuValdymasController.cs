@@ -14,6 +14,7 @@ namespace RegitraISP.Controllers
     public class AutomobiliuValdymasController : Controller
     {
         private IEnumerable<SelectListItem> users;
+        private IEnumerable<SelectListItem> cars;
         private readonly regitraispContext _context;
         public AutomobiliuValdymasController(regitraispContext context)
         {
@@ -24,6 +25,12 @@ namespace RegitraISP.Controllers
                   Value = d.AsmensKodas.ToString(),
                   Text = string.Format("{0} {1}, {2}", d.Vardas, d.Pavarde, d.AsmensKodas)
               }) ;
+            cars = _context.Automobilis.Select(d =>
+              new SelectListItem
+              {
+                  Value = d.Vin.ToString(),
+                  Text = string.Format("{0} {1}, {2}", d.Marke, d.Modelis, d.Vin)
+              });
         }
 
         public IActionResult Index()
@@ -76,6 +83,110 @@ namespace RegitraISP.Controllers
             catch
             {
                 return RedirectToAction("Deklaravimas");
+            }
+            return RedirectToAction("Index", "AutomobiliuValdymas");
+        }
+        public IActionResult Perleidimas()
+        {
+            ViewBag.usr = users;
+            ViewBag.car = cars;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Perleidimas(KlientasAutomobilisPasas data)
+        {
+            try
+            {
+                Automobili auto = _context.Automobilis.Find(data.Vin);
+                List<AutomobilioPasa> pasai = _context.AutomobilioPasas.ToList();
+                foreach(var pasas in pasai)
+                {
+                    if(pasas.FkAutomobilisvin == data.Vin)
+                    {
+                        auto.FkKlientasasmensKodas = data.asmens_kodas;
+                        pasas.IsdavimoData = DateTime.Now;
+                        var tabelionr = (int)HttpContext.Session.GetInt32("EmployeeID");
+                        pasas.FkDarbuotojastabelioNr = tabelionr;
+                        _context.Automobilis.Update(auto);
+                        _context.AutomobilioPasas.Update(pasas);
+                        _context.SaveChanges();
+                        break;
+                    }
+                }
+            }
+
+            catch
+            {
+                return RedirectToAction("Deklaravimas");
+            }
+            return RedirectToAction("Index", "AutomobiliuValdymas");
+        }
+
+        public IActionResult Numeriai()
+        {
+            ViewBag.car = cars;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Numeriai(Automobili data)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Numeriai");
+            }
+            try
+            {
+                Automobili auto = _context.Automobilis.Find(data.Vin);
+                auto.ValstybiniaiNumeriai = data.ValstybiniaiNumeriai;
+                _context.Automobilis.Update(auto);
+                _context.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Numeriai");
+            }
+            return RedirectToAction("Index", "AutomobiliuValdymas");
+        }
+
+        public IActionResult Atnaujinimas()
+        {
+            ViewBag.car = cars;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Atnaujinimas(KlientasAutomobilisPasas data)
+        {
+            try
+            {
+                List<AutomobilioPasa> pasai = _context.AutomobilioPasas.ToList();
+                foreach (var pasas in pasai)
+                {
+                    if (pasas.FkAutomobilisvin == data.Vin)
+                    {
+                        pasas.AutomobilioSpalva = data.AutomobilioSpalva;
+                        pasas.KuroTipas = data.KuroTipas;
+                        pasas.Co2Kiekis = data.Co2Kiekis;
+                        pasas.Svoris = data.Svoris;
+                        pasas.VariklioLitrazas = data.VariklioLitrazas;
+                        pasas.KilovatuSkaicius = data.KilovatuSkaicius;
+                        pasas.IsdavimoData = DateTime.Now;
+                        pasas.FkAutomobilisvin = data.Vin;
+                        var tabelionr = (int)HttpContext.Session.GetInt32("EmployeeID");
+                        pasas.FkDarbuotojastabelioNr = tabelionr;
+
+                        _context.AutomobilioPasas.Update(pasas);
+                        _context.SaveChanges();
+                        break;
+                    }
+                }
+            }
+
+            catch
+            {
+                return RedirectToAction("Atnaujinimas");
             }
             return RedirectToAction("Index", "AutomobiliuValdymas");
         }
