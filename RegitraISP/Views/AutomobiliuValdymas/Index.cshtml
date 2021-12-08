@@ -30,40 +30,48 @@
                                 <p class="tm-figcaption">Automobilio deklaravimas</p>
                             </a>
                         </figure>
+                        <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
+                            <a style="text-decoration:none" href="@Url.Action("Perleidimas", "AutomobiliuValdymas")">
+                                <div class="tm-gallery-item-overlay">
+                                    <img src="img/8.jpg" alt="Image" class="img-fluid tm-img-center">
+                                </div>
+                                <p class="tm-figcaption">Automobilio perleidimas</p>
+                            </a>
+                        </figure>
+                        <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
+                            <a style="text-decoration:none" href="@Url.Action("Numeriai", "AutomobiliuValdymas")">
+                                <div class="tm-gallery-item-overlay">
+                                    <img src="img/4.jpg" alt="Image" class="img-fluid tm-img-center">
+                                </div>
+                                <p class="tm-figcaption">Numerių redagavimas</p>
+                            </a>
+                        </figure>
+                        <figure class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                            <a style="text-decoration:none" href="@Url.Action("Atnaujinimas", "AutomobiliuValdymas")">
+                                <div class="tm-gallery-item-overlay">
+                                    <img src="img/2.jpg" alt="Image" class="img-fluid tm-img-center">
+                                </div>
+                                <p class="tm-figcaption">Duomenų atnaujinimas</p>
+                            </a>
+                        </figure>
                     }
-                    <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
-                        <a style="text-decoration:none" href="#">
-                            <div class="tm-gallery-item-overlay">
-                                <img src="img/7.jpg" alt="Image" class="img-fluid tm-img-center">
-                            </div>
-                            <p class="tm-figcaption">SDK generavimas</p>
-                        </a>
-                    </figure>
-                    <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
-                        <a style="text-decoration:none" href="#">
-                            <div class="tm-gallery-item-overlay">
-                                <img src="img/4.jpg" alt="Image" class="img-fluid tm-img-center">
-                            </div>
-                            <p class="tm-figcaption">Numerių redagavimas</p>
-                        </a>
-                    </figure>
-                    <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
-                        <a style="text-decoration:none" href="#">
-                            <div class="tm-gallery-item-overlay">
-                                <img src="img/8.jpg" alt="Image" class="img-fluid tm-img-center">
-                            </div>
-                            <p class="tm-figcaption">Automobilio perleidimas</p>
-                        </a>
-                    </figure>
-                    <figure class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <a style="text-decoration:none" href="#">
-                            <div class="tm-gallery-item-overlay">
-                                <img src="img/2.jpg" alt="Image" class="img-fluid tm-img-center">
-                            </div>
-                            <p class="tm-figcaption">Duomenų atnaujinimas</p>
-                        </a>
-                    </figure>
-
+                    @if (@HttpContextAccessor.HttpContext.Session.GetString("username") != null && @HttpContextAccessor.HttpContext.Session.GetInt32("isEmployee") == 0)
+                    {
+                        <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
+                            <a style="text-decoration:none" href="#">
+                                <div class="tm-gallery-item-overlay">
+                                    <img src="img/7.jpg" alt="Image" class="img-fluid tm-img-center">
+                                </div>
+                                <p class="tm-figcaption">SDK generavimas</p>
+                            </a>
+                        </figure>
+                    }
+                    @if (@HttpContextAccessor.HttpContext.Session.GetString("username") == null)
+                    {
+                        <div class="tm-gallery-item-overlay">
+                             <p class="tm-figcaption">Turite prisijungti, kad galėtumėte naudotis automobilio valdymo funkcijomis</p>
+                        </div>
+                    }
                 </div>
             </div>
         </section>
