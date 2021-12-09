@@ -652,3 +652,4 @@ C:\Users\redas\Desktop\RegistraISP\RegitraISP\obj\Debug\net5.0\Razor\Views\Autom
 C:\Users\redas\Desktop\RegistraISP\RegitraISP\obj\Debug\net5.0\Razor\Views\AutomobiliuValdymas\Numeriai.cshtml.g.cs
 C:\Users\redas\Desktop\RegistraISP\RegitraISP\obj\Debug\net5.0\Razor\Views\AutomobiliuValdymas\Perleidimas.cshtml.g.cs
 C:\Users\redas\Desktop\RegistraISP\RegitraISP\obj\Debug\net5.0\Razor\Views\AutomobiliuValdymas\SDK.cshtml.g.cs
+C:\Users\redas\Desktop\RegistraISP\RegitraISP\obj\Debug\net5.0\Razor\Views\TechninesApziuros\Skaiciuokle.cshtml.g.cs

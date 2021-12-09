@@ -1,0 +1,89 @@
+﻿@model RegitraISP.ViewModels.KlientasAutomobilisPasas
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@*
+
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Skaiciuokle";
+}
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+<section id="section" class="bodysection">
+    <div class="container_white">
+        <section class="tm-margin-b-l">
+            <h2 class="pagetitle">Taršos skaičiuoklė</h2>
+            <br>
+            <p class="page_infotext">Šiame puslapyje yra pateikiama Taršos skaičiuoklė, kurios pagalba galima pasitikrinti kainą, kuri gausis registruojant automobili</p>
+            <br>
+            <br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="card" style="width: 15rem;">
+                                <div class="card-header">
+                                    Pasirinkite jūsų automobilio kuro tipa
+                                </div>
+                                <button id="option1" onclick="alertas('Dujos')" class="list-group-item list-group-item-action" type="button" name="opt1" value="">Dujos</button>
+                                <button id="option2" onclick="alertas('Benzinas')" class="list-group-item list-group-item-action" type="button" name="opt2" value="">Benzinas</button>
+                                <button id="option3" onclick="alertas('Dyzelis')" class="list-group-item list-group-item-action" type="button" name="opt3" value="">Dyzelis</button>
+                                <button id="option4" onclick="alertas('Elektra')" class="list-group-item list-group-item-action" type="button" name="opt3" value="">Elektra</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <center><h3>Jūsu pasirinktas kuro tipas:</h3></center><br>
+                            <center><h3 id="choosen" style="font-weight:bold">Kuro tipas nepasirinktas!</h3></center>
+                            <h4>C0₂ kiekis:</h4>
+                            <input type="text" id="co2" name="co2">
+                            <button id="solve" style="margin-left:0px;" class="btn btn-dark" onclick="solve()" type="button" name="solve" value="">Skaičiuoti</button>
+                        </div>
+                    </div>
+            </div>
+            <input type="hidden" id="kuras" name="kuras" value="">
+        </section>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script type="text/javascript">
+    function alertas(string) {
+        document.getElementById("choosen").innerHTML = string;
+        document.getElementById("kuras").value = string;
+    }
+    function solve() {
+        let choosen = document.getElementById("kuras").value;
+        let co2 = document.getElementById("co2").value;
+        let cost = 0;
+        if (choosen.length != 0 && co2.length != 0 && co2 > 0) {
+            switch (choosen) {
+                case 'Dujos':
+                    cost = co2 * 0.2
+                    break;
+                case 'Benzinas':
+                    cost = co2 * 0.4
+                    break;
+                case 'Dyzelis':
+                    cost = co2 * 0.8
+                    break;
+                case 'Elektra':
+                    cost = 0
+                    break;
+            }
+
+            Swal.fire({
+                icon: 'info',
+                title: 'Jusu automobilio taršos mokestis: \n ' + cost.toFixed(2) + '€',
+                confirmButtonText: 'Gerai'
+            })
+        } else {
+            Swal.fire({
+                icon: 'info',
+                title: 'Nepasirinkot kuro tipo arba blogas CO2',
+                confirmButtonText: 'Gerai'
+            })
+        }
+    }
+</script>
