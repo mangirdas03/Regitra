@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2021 at 03:24 PM
+-- Generation Time: Dec 10, 2021 at 06:15 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -53,6 +53,14 @@ CREATE TABLE `automobilio_pasas` (
   `fk_Darbuotojastabelio_nr` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `automobilio_pasas`
+--
+
+INSERT INTO `automobilio_pasas` (`paso_nr`, `automobilio_spalva`, `kuro_tipas`, `co2_kiekis`, `svoris`, `variklio_litrazas`, `kilovatu_skaicius`, `isdavimo_data`, `fk_Automobilisvin`, `fk_Darbuotojastabelio_nr`) VALUES
+(1, '55', '55', 55, 55, 55, 55, '2021-12-10', '55', 123),
+(234423, '1', '1', 2, 1, 1, 1, '2021-12-10', '5345342', 123);
+
 -- --------------------------------------------------------
 
 --
@@ -63,13 +71,21 @@ CREATE TABLE `automobilis` (
   `vin` varchar(18) NOT NULL,
   `marke` varchar(25) NOT NULL,
   `modelis` varchar(35) NOT NULL,
-  `sdk` varchar(9) NOT NULL,
+  `sdk` varchar(9) DEFAULT NULL,
   `pagaminimo_metai` date NOT NULL,
   `paskutine_reg_salis` varchar(50) NOT NULL,
   `pirmoji_reg_salis` varchar(50) NOT NULL,
   `valstybiniai_numeriai` varchar(7) NOT NULL,
   `fk_Klientasasmens_kodas` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `automobilis`
+--
+
+INSERT INTO `automobilis` (`vin`, `marke`, `modelis`, `sdk`, `pagaminimo_metai`, `paskutine_reg_salis`, `pirmoji_reg_salis`, `valstybiniai_numeriai`, `fk_Klientasasmens_kodas`) VALUES
+('5345342', 'Bmw', '535d', 'KFGRYLZEY', '2021-12-01', 'Lietuva', 'Latvija', 'M5 5UKA', '22'),
+('55', '55', '55', NULL, '2021-12-03', '55', '55', '55', '22');
 
 -- --------------------------------------------------------
 
@@ -349,6 +365,16 @@ ALTER TABLE `vairuotojo_pazymejimas`
   ADD PRIMARY KEY (`pazymejimo_nr`),
   ADD KEY `pazymejimo_bukle` (`pazymejimo_bukle`),
   ADD KEY `suteikiamas` (`fk_Klientasasmens_kodas`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `automobilio_pasas`
+--
+ALTER TABLE `automobilio_pasas`
+  MODIFY `paso_nr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=234424;
 
 --
 -- Constraints for dumped tables
