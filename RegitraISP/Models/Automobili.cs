@@ -20,6 +20,9 @@ namespace RegitraISP.Models
         public DateTime PagaminimoMetai { get; set; }
         public string PaskutineRegSalis { get; set; }
         public string PirmojiRegSalis { get; set; }
+
+        [Required(ErrorMessage = "Privalomas laukas!")]
+        [MaxLength(7, ErrorMessage = "Max 7 simboliai!")]
         public string ValstybiniaiNumeriai { get; set; }
         public string FkKlientasasmensKodas { get; set; }
 

@@ -69,7 +69,8 @@ namespace RegitraISP.Controllers
             auto.Sdk = sdk;
             _context.Automobilis.Update(auto);
             _context.SaveChanges();
-            return RedirectToAction("Index", "AutomobiliuValdymas");
+            Task.Delay(1600).Wait();
+            return RedirectToAction("SDK", "AutomobiliuValdymas");
         }
         public IActionResult Deklaravimas()
         {
@@ -111,12 +112,12 @@ namespace RegitraISP.Controllers
                 _context.Automobilis.Add(auto);
                 _context.AutomobilioPasas.Add(pasas);
                 _context.SaveChanges();
-
             }
 
             catch
             {
                 return RedirectToAction("Deklaravimas");
+                //return RedirectToAction("Index", "AutomobiliuValdymas");
             }
             return RedirectToAction("Index", "AutomobiliuValdymas");
         }
@@ -142,6 +143,7 @@ namespace RegitraISP.Controllers
                         pasas.IsdavimoData = DateTime.Now;
                         var tabelionr = (int)HttpContext.Session.GetInt32("EmployeeID");
                         pasas.FkDarbuotojastabelioNr = tabelionr;
+
                         _context.Automobilis.Update(auto);
                         _context.AutomobilioPasas.Update(pasas);
                         _context.SaveChanges();
@@ -152,7 +154,7 @@ namespace RegitraISP.Controllers
 
             catch
             {
-                return RedirectToAction("Deklaravimas");
+                return RedirectToAction("Perleidimas");
             }
             return RedirectToAction("Index", "AutomobiliuValdymas");
         }
@@ -200,12 +202,18 @@ namespace RegitraISP.Controllers
                 {
                     if (pasas.FkAutomobilisvin == data.Vin)
                     {
-                        pasas.AutomobilioSpalva = data.AutomobilioSpalva;
-                        pasas.KuroTipas = data.KuroTipas;
-                        pasas.Co2Kiekis = data.Co2Kiekis;
-                        pasas.Svoris = data.Svoris;
-                        pasas.VariklioLitrazas = data.VariklioLitrazas;
-                        pasas.KilovatuSkaicius = data.KilovatuSkaicius;
+                        if(data.AutomobilioSpalva != null)
+                            pasas.AutomobilioSpalva = data.AutomobilioSpalva;
+                        if (data.KuroTipas != null)
+                            pasas.KuroTipas = data.KuroTipas;
+                        if (data.Co2Kiekis != 0)
+                            pasas.Co2Kiekis = data.Co2Kiekis;
+                        if (data.Svoris != 0)
+                            pasas.Svoris = data.Svoris;
+                        if (data.VariklioLitrazas != 0)
+                            pasas.VariklioLitrazas = data.VariklioLitrazas;
+                        if (data.KilovatuSkaicius != 0)
+                            pasas.KilovatuSkaicius = data.KilovatuSkaicius;
                         pasas.IsdavimoData = DateTime.Now;
                         pasas.FkAutomobilisvin = data.Vin;
                         var tabelionr = (int)HttpContext.Session.GetInt32("EmployeeID");

@@ -14,7 +14,7 @@
         <section class="tm-margin-b-l">
             <h2 class="pagetitle">Automobilio SDK generavimas</h2>
             <br />
-            <p class="page_infotext"></p>
+            <p class="page_infotext">Šiame puslapyje galite sugeneruoti naują SDK arba peržiūrėti esamą.</p>
             <br />
             <br />
             <div style="padding-left:100px">
@@ -23,7 +23,7 @@
                     <p class="page_infotext"><b>Jūsų priregistruoti automobiliai</b></p>
                     <form method="post" asp-controller="AutomobiliuValdymas" asp-action="SDK" id="av">
                         <table class="table table-hover table-dark" style="background-color: #4ca1af; box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.8); ">
-                            <tr><th>Automobilio VIN </th><th>Marke</th><th>Modelis</th><th>Pagaminimo Metai</th><th>Valstybiniai numeriai</th><th>SDK</th></tr>
+                            <tr><th>Automobilio VIN </th><th>Markė</th><th>Modelis</th><th>Pagaminimo metai</th><th>Valstybiniai numeriai</th><th>SDK</th></tr>
                             @foreach (Automobili car in Model.Automobiliai)
                             {
                                 <tr>
@@ -49,7 +49,7 @@
                         }
                         @if (Model.Automobiliai.Count == 0)
                         {
-                            <p class="page_infotext"><b>Priregistruotų automobilių jūsų paskiroje nerasta!</b></p>
+                            <p class="page_infotext"><b>Registruotų automobilių jūsų paskyroje nerasta!</b></p>
                         }
 
 
@@ -64,11 +64,17 @@
     function showsdk(sdk) {
                     Swal.fire({
                     icon: 'info',
-                    title: 'Jusu automobilio SDK: \n ' + sdk.value,
+                    title: 'Jūsų automobilio SDK: \n ' + sdk.value,
                     confirmButtonText: 'Gerai'
                     })
     }
     function createsdk(vin) {
         document.getElementById("vin").value = vin;
+        Swal.fire({
+            icon: 'success',
+            title: 'SDK sėkmingai sugeneruotas!',
+            showConfirmButton: false,
+            timer: 1600
+        })
     }
 </script>

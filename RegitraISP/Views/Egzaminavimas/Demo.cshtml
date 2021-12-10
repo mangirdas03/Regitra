@@ -10,14 +10,14 @@
 <section id="section" class="bodysection">
     <div class="container_white">
         <section class="tm-margin-b-l">
-            <h2 class="pagetitle">Apeliacija</h2>
+            <h2 class="pagetitle">Bandomasis teorijos egzaminas</h2>
             <br />
             <br />
-            <p class="page_infotext">Šiame puslapyje yra pateikiama informacija apie teorijos bei praktikos egzaminus. Jei norite laikyti egzaminą, išsirinkite sau tinkamą laiką ir užsiregistruokite.</p>
+            <p class="page_infotext">Šiame puslapyje galite pasitikrinti savo teorines KET žinias atliekant bandomąjį teorijos egzaminą. Testo rezultatai nėra fiksuojami, todėl jį atlikti galima neribotą kiekį kartų.</p>
             <br />
             <br />
 
-            <p style="text-align: center; font-size: larger">Apeliacija</p>
+            <p style="text-align: center; font-size: larger"><strong>Testas</strong></p>
             <form method="post" asp-controller="Egzaminavimas" asp-action="Demo" id="mf">
                 <p style="font-size: larger">1. Ties kuriuo šviesoforo signalu galima kirsti sankryžą?</p>
                 <p style="font-size: larger"><input type="radio" name="opt1" value="0" /> Raudonu</p>
@@ -50,7 +50,7 @@
                 <p style="font-size: larger"><input type="radio" name="opt5" value="0" /> 110 km/h</p>
                 <br />
                 <br />
-                <button id="btn_end" style="margin-left:0px;" class="btn btn-danger" type="button" onclick="" name="end" value="1">Baigti testą</button>
+                <button id="btn_end" style="margin-left:0px;" class="btn btn-primary" type="button" onclick="" name="end" value="1">Baigti testą</button>
             </form>
 
         </section>
@@ -61,14 +61,6 @@
 <script src="sweetalert2.all.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#mf").submit(function () {
-            Swal.fire({
-                icon: 'success',
-                title: 'Operacija sėkminga!',
-                showConfirmButton: false,
-                timer: 1600
-            })
-        });
         $("#btn_end").click(function () {
             var count = 0;
             if ($("#q1").is(':checked')) {
@@ -88,7 +80,7 @@
             }
             Swal.fire({
                 icon: 'info',
-                title: 'Teisingai atsakei į ' + count + '/5 klausimų',
+                title: 'Teisingai atsakėte į ' + count + '/5 klausimų.',
                 confirmButtonText: 'Gerai'
                 
             })

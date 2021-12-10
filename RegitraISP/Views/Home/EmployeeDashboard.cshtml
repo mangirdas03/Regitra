@@ -1,21 +1,29 @@
-﻿@using Microsoft.AspNetCore.Http
-@model RegitraISP.Models.Darbuotoja
-@inject IHttpContextAccessor HttpContextAccessor
+﻿@model RegitraISP.Models.Darbuotoja
 @{
     ViewData["Title"] = "Dashboard";
 }
 
 <section id="section" class="bodysection">
-    <div class="text-center" style="padding-bottom:1000px;">
-        <h1 class="display-4">Employee dashboard</h1>
-
-        <p>Sveiki @Html.DisplayFor(modelItem => Model.Vardas) @Html.DisplayFor(modelItem => Model.Pavarde)!</p>
-        <p>Vardas:</p>
-        @HttpContextAccessor.HttpContext.Session.GetString("username")
-        @*@HttpContextAccessor.HttpContext.Session.GetString("passw")*@
-        <p><a class="btn btn-danger" href="@Url.Action("Logout", "Home")">Atsijungti</a></p>
-
-
+    <div class="container_white">
+        <section class="tm-margin-b-l">
+            <h2 class="pagetitle">Darbuotojo paskyra</h2>
+            <br />
+            <p class="page_infotext">Darbuotojas <strong>@Html.DisplayFor(modelItem => Model.Vardas) @Html.DisplayFor(modelItem => Model.Pavarde) </strong> sėkmingai autorizuotas. Galite tęsti darbą.</p>
+            <br />
+            <br />
+            <p class="page_infotext">Darbuotojo informacija:</p>
+            <div style="padding-left:50px">
+                <p>Tabelio nr: <strong>@Html.DisplayFor(modelItem => Model.TabelioNr)</strong></p>
+                <p>Vardas: <strong>@Html.DisplayFor(modelItem => Model.Vardas)</strong></p>
+                <p>Pavardė: <strong>@Html.DisplayFor(modelItem => Model.Pavarde)</strong></p>
+                @*<p>Filialas: <strong>@Model.FkFilialasidFilialasNavigation.FkMiestaspavadinimas </strong></p>*@
+            </div>
+            <br />
+            <br />
+            <div style=" margin: 0 auto; margin-left:50%">
+                <a class="btn btn-danger btn-lg" href="@Url.Action("Logout", "Home")">Atsijungti</a>
+            </div>
+        </section>
 
     </div>
 </section>

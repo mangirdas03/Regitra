@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\redas\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\redas\\.nuget\\packages"
+      "C:\\Users\\gladi\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\gladi\\.nuget\\packages"
     ]
   }
 }

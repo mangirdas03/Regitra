@@ -79,7 +79,7 @@ namespace RegitraISP.Controllers
         {
             if (HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 1)
             {
-                var loggedUser = _context.Darbuotojas.Where(a => a.TabelioNr.Equals(HttpContext.Session.GetString("username")) && a.Slaptazodis.Equals(HttpContext.Session.GetString("passw"))).FirstOrDefault();
+                var loggedUser = _context.Darbuotojas.Where(a => a.TabelioNr.ToString().Equals(HttpContext.Session.GetString("username"))).FirstOrDefault();
                 return View(loggedUser);
             }
             else
@@ -92,7 +92,7 @@ namespace RegitraISP.Controllers
         {
             if (HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 0)
             {
-                var loggedUser = _context.Klientas.Where(a => a.AsmensKodas.Equals(HttpContext.Session.GetString("username")) && a.Slaptazodis.Equals(HttpContext.Session.GetString("passw"))).FirstOrDefault();
+                var loggedUser = _context.Klientas.Where(a => a.AsmensKodas.Equals(HttpContext.Session.GetString("username"))).FirstOrDefault();
                 return View(loggedUser);
             }
             else

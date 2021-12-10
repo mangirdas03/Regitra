@@ -8,7 +8,7 @@
 
 <section id="section" class="bodysection">
 
-    <div class="text-center" style="padding-bottom:200px;">
+    <div class="text-center" style="padding-bottom:50px;">
         <div class="landingtitle">Regitra</div>
 
 
@@ -37,21 +37,40 @@
             </div>
         </div>
 
-
-
-
-
-
-
-        <p>data from DB for testing purposes</p>
-        @foreach (var item in Model)
-        {
-            @Html.DisplayFor(modelItem => item.TabelioNr)<br>
-            @Html.DisplayFor(modelItem => item.Slaptazodis)<br>
-            @Html.DisplayFor(modelItem => item.Pavarde)<br>
-        }
+        <div class="container_white" style="margin-top: 200px;">
+            <div class="best-features">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section-heading" style="padding-bottom: 50px;">
+                                <h2>Apie įmonę</h2>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="left-content" style="text-align: left;">
+                                <h4>Kas yra <i>"Regitra"</i> ir kam ji skirta?</h4>
+                                <p>Regitra - valstybinė įmonė, skirta teikti informaciją bei paslaugas susijusias su automobiliais ir kitu transportu. Šiame tinklaplyje rasite paslaugų skiltis, susijusias su:</p>
+                                <ul class="featured-list">
+                                    <li><a href="@Url.Action("Index", "TechninesApziuros")">Techninėmis apžiūromis</a></li>
+                                    <li><a href="@Url.Action("Index", "Pazymejimai")">Vairuotojo pažymėjimais</a></li>
+                                    <li><a href="@Url.Action("Index", "AutomobiliuValdymas")">Automobilių valdymu</a></li>
+                                    <li><a href="@Url.Action("Index", "Egzaminavimas")">Egzaminavimu</a></li>
+                                </ul>
+                                <br />
+                                <p>Dalis funkcijų yra prieinamos ne visiems naudotojams. Tam, jog galėtumėte naudotis visomis paslaugomis, turime Jus identifikuoti.</p>
+                                <a class="btn btn-secondary " href="@Url.Action("Login", "Home")">Prisijungti prie sistemos</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="right-image">
+                                <img src="~/img/about.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
 </section>
 
 <script src="~/js/custom.js"></script>
