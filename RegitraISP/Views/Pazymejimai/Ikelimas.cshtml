@@ -1,0 +1,63 @@
+﻿@*          Egzaminavimas/Filialai         *@
+@model RegitraISP.ViewModels.Nuotrauka
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Nuotraukos įkėlimas";
+}
+@*<link rel="stylesheet" href="css/tooplate-style.css">*@
+
+<section id="section" class="bodysection">
+    <div class="container_white">
+        <section class="tm-margin-b-l">
+            <h2 class="pagetitle">Nuotraukos įkėlimas</h2>
+            <br />
+            <br />
+            <p class="page_infotext">
+                Šiame puslapyje galite įkelti savo nuotrauką. Pasirinkite nuotrauką iš savo įrenginio ir išsaugokite.
+            </p>
+            <br />
+            <br />
+
+            <form method="post" asp-controller="Pazymejimai" asp-action="Ikelimas" id="mf" enctype="multipart/form-data">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input asp-for="NuotraukaFile" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile">Pasirinkite nuotrauką</label>
+                        </div>
+                        <span asp-validation-for="NuotraukaFile" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <button id="btn_snd" style="margin-left:15px;" class="btn btn-primary" type="submit" name="send" value="1">Išsaugoti pasirinktą nuotrauką</button>
+            </form>
+
+        </section>
+    </div>
+</section>
+@section scripts{
+    <script type="text/javascript">
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#mf").submit(function () {
+            Swal.fire({
+                icon: 'success',
+                title: 'Operacija sėkminga!',
+                showConfirmButton: false,
+                timer: 1600
+            })
+        });
+    });
+</script>

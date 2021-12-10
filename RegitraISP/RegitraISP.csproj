@@ -20,4 +20,8 @@
     <PackageReference Include="MySql.EntityFrameworkCore" Version="5.0.8" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\profilepics\" />
+  </ItemGroup>
+
 </Project>

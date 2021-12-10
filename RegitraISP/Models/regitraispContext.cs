@@ -374,7 +374,7 @@ namespace RegitraISP.Models
                     .HasColumnName("el_pastas");
 
                 entity.Property(e => e.Nuotrauka)
-                    .HasColumnType("longblob")
+                    .HasMaxLength(20)
                     .HasColumnName("nuotrauka")
                     .HasDefaultValueSql("'NULL'");
 

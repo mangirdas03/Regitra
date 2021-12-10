@@ -1,4 +1,6 @@
 ﻿@model RegitraISP.Models.Klienta
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 @{
     ViewData["Title"] = "Dashboard";
 }
@@ -35,6 +37,16 @@
                     <p>Praktikos egzaminas:<strong> Neišlaikytas.</strong></p>
                 }
                 <p>Nuotrauka:</p>
+                @if (Model.Nuotrauka != null)
+                {
+                    <img src="~/profilepics/@Model.Nuotrauka"
+                         height="200" width="200"
+                         asp-append-version="true" />
+                }else
+                { 
+                    <p>Neturite ikėlę nuotraukos.</p>
+                }
+
             </div>
             <br />
             <br />

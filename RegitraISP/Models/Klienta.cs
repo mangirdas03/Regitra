@@ -43,7 +43,8 @@ namespace RegitraISP.Models
 
         public bool TeorijosEgzIslaikytas { get; set; }
         public bool PraktikosEgzIslaikytas { get; set; }
-        public byte[] Nuotrauka { get; set; }
+
+        public string Nuotrauka { get; set; }
 
         public virtual ICollection<Apeliacija> Apeliacijas { get; set; }
         public virtual ICollection<Automobili> Automobilis { get; set; }

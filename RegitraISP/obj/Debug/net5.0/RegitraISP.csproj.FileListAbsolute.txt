@@ -661,3 +661,5 @@ C:\Users\gladi\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\Automobil
 C:\Users\gladi\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\Egzaminavimas\Apeliacija.cshtml.g.cs
 C:\Users\gladi\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\Egzaminavimas\Demo.cshtml.g.cs
 C:\Users\gladi\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\TechninesApziuros\Skaiciuokle.cshtml.g.cs
+C:\Users\gladi\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\Pazymejimai\Ikelimas.cshtml.g.cs
+C:\Users\gladi\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\Pazymejimai\DemoPazymejimas.cshtml.g.cs

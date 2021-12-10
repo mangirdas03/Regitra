@@ -273,3 +273,12 @@ th {
 
 
 
+.demo_paz {
+    margin: auto;
+    background-image: url(../img/vp-pvz.jpg);
+    background-size: 100% 100%;
+    padding-top: 98px;
+    padding-left: 44px;
+    width: 900px;
+    height: 450px
+}
