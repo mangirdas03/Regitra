@@ -670,3 +670,6 @@ C:\Users\HP\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\Pazymejimai\
 C:\Users\HP\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\TechninesApziuros\Skaiciuokle.cshtml.g.cs
 C:\Users\HP\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\TechninesApziuros\Deklaravimas.cshtml.g.cs
 C:\Users\HP\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\TechninesApziuros\Istorija.cshtml.g.cs
+C:\Users\gladi\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\Pazymejimai\Bukle.cshtml.g.cs
+C:\Users\gladi\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\TechninesApziuros\Deklaravimas.cshtml.g.cs
+C:\Users\gladi\Desktop\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\TechninesApziuros\Istorija.cshtml.g.cs

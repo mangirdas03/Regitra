@@ -27,7 +27,7 @@
                                 </div>
                                 <button id="option1" onclick="alertas('Dujos')" class="list-group-item list-group-item-action" type="button" name="opt1" value="">Dujos</button>
                                 <button id="option2" onclick="alertas('Benzinas')" class="list-group-item list-group-item-action" type="button" name="opt2" value="">Benzinas</button>
-                                <button id="option3" onclick="alertas('Dyzelis')" class="list-group-item list-group-item-action" type="button" name="opt3" value="">Dyzelis</button>
+                                <button id="option3" onclick="alertas('Dyzelinas')" class="list-group-item list-group-item-action" type="button" name="opt3" value="">Dyzelinas</button>
                                 <button id="option4" onclick="alertas('Elektra')" class="list-group-item list-group-item-action" type="button" name="opt3" value="">Elektra</button>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                             </div>
                             
                             <br />
-                            <button id="solve" style="margin-left:0px;" class="btn btn-dark" onclick="solve()" type="button" name="solve" value="">Skaičiuoti</button>
+                            <button id="solve" style="margin-left: 0px; position: absolute;" class="btn btn-dark" onclick="solve()" type="button" name="solve" value="">Skaičiuoti</button>
                         </div>
                     </div>
             </div>
@@ -80,7 +80,7 @@
                 case 'Benzinas':
                     cost = co2 * 0.4
                     break;
-                case 'Dyzelis':
+                case 'Dyzelinas':
                     cost = co2 * 0.8
                     break;
                 case 'Elektra':

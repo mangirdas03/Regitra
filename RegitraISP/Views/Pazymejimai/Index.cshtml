@@ -1,5 +1,6 @@
 ﻿@*          Pazymejimai         *@
-@*@model IEnumerable<RegitraISP.Models.Miesta>*@
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 @{
     ViewData["Title"] = "Pažymėjimai";
 }
@@ -11,52 +12,69 @@
             <header>
                 <h2 class="pagetitle2">Pažymėjimai</h2>
             </header>
-            <br/>
+            <br />
             <p class="page_infotext">Šioje paslaugų skiltyje rasite visą reikiamą informaciją bei teikiamas paslaugas susijusias su vairuotojo pažymėjimais (gaminimas, atsiėmimas ir t.t.).</p>
 
             <div class="tm-gallery">
                 <div class="row">
-                    <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
-                        <a style="text-decoration:none" href="#">
-                            <div class="tm-gallery-item-overlay">
-                                <img src="img/5.jpg" alt="Image" class="img-fluid tm-img-center">
-                            </div>
 
-                            <p class="tm-figcaption">Pažymėjimo atnaujinimas</p>
-                        </a>
-                    </figure>
-                    <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
-                        <a style="text-decoration:none" href="@Url.Action("Ikelimas", "Pazymejimai")">
-                            <div class="tm-gallery-item-overlay">
-                                <img src="img/7.jpg" alt="Image" class="img-fluid tm-img-center">
-                            </div>
-                            <p class="tm-figcaption">Nuotraukos įkėlimas</p>
-                        </a>
-                    </figure>
-                    <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
-                        <a style="text-decoration:none" href="@Url.Action("Bukle", "Pazymejimai")">
-                            <div class="tm-gallery-item-overlay">
-                                <img src="img/8.jpg" alt="Image" class="img-fluid tm-img-center">
-                            </div>
-                            <p class="tm-figcaption">Pažymėjimo būklė</p>
-                        </a>
-                    </figure>
-                    <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
-                        <a style="text-decoration:none" href="#">
-                            <div class="tm-gallery-item-overlay">
-                                <img src="img/4.jpg" alt="Image" class="img-fluid tm-img-center">
-                            </div>
-                            <p class="tm-figcaption">Pažymėjimo užsakymas</p>
-                        </a>
-                    </figure>
-                    <figure class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <a style="text-decoration:none" href="@Url.Action("DemoPazymejimas", "Pazymejimai")">
-                            <div class="tm-gallery-item-overlay">
-                                <img src="img/6.jpg" alt="Image" class="img-fluid tm-img-center">
-                            </div>
-                            <p class="tm-figcaption">Demo pažymėjimas</p>
-                        </a>
-                    </figure>
+                    @if (@HttpContextAccessor.HttpContext.Session.GetString("username") != null && @HttpContextAccessor.HttpContext.Session.GetInt32("isEmployee") == 0)
+                    {
+                        <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
+                            <a style="text-decoration:none" href="@Url.Action("Ikelimas", "Pazymejimai")">
+                                <div class="tm-gallery-item-overlay">
+                                    <img src="img/7.jpg" alt="Image" class="img-fluid tm-img-center">
+                                </div>
+                                <p class="tm-figcaption">Nuotraukos įkėlimas</p>
+                            </a>
+                        </figure>
+                        <figure class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                            <a style="text-decoration:none" href="@Url.Action("DemoPazymejimas", "Pazymejimai")">
+                                <div class="tm-gallery-item-overlay">
+                                    <img src="img/6.jpg" alt="Image" class="img-fluid tm-img-center">
+                                </div>
+                                <p class="tm-figcaption">Demo pažymėjimas</p>
+                            </a>
+                        </figure>
+                        <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
+                            <a style="text-decoration:none" href="@Url.Action("Bukle", "Pazymejimai")">
+                                <div class="tm-gallery-item-overlay">
+                                    <img src="img/8.jpg" alt="Image" class="img-fluid tm-img-center">
+                                </div>
+                                <p class="tm-figcaption">Pažymėjimo būklė</p>
+                            </a>
+                        </figure>
+                        <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
+                            <a style="text-decoration:none" href="#">
+                                <div class="tm-gallery-item-overlay">
+                                    <img src="img/5.jpg" alt="Image" class="img-fluid tm-img-center">
+                                </div>
+
+                                <p class="tm-figcaption">Pažymėjimo atnaujinimas</p>
+                            </a>
+                        </figure>
+                        <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
+                            <a style="text-decoration:none" href="#">
+                                <div class="tm-gallery-item-overlay">
+                                    <img src="img/4.jpg" alt="Image" class="img-fluid tm-img-center">
+                                </div>
+                                <p class="tm-figcaption">Pažymėjimo užsakymas</p>
+                            </a>
+                        </figure>
+                    }
+                    @if (@HttpContextAccessor.HttpContext.Session.GetString("username") == null)
+                    {
+                        <div class="tm-gallery-item-overlay">
+                            <p class="tm-figcaption">Turite prisijungti, kad galėtumėte naudotis su pažymėjimais susijusiomis funkcijomis.</p>
+                        </div>
+                    }
+                    @if (@HttpContextAccessor.HttpContext.Session.GetString("username") != null && @HttpContextAccessor.HttpContext.Session.GetInt32("isEmployee") == 1)
+                    {
+                        <div class="tm-gallery-item-overlay">
+                            <p class="tm-figcaption">Šios funkcijos prieinamos tik paprastam naudotojui.</p>
+                        </div>
+                    }
+
                 </div>
             </div>
         </section>

@@ -18,23 +18,6 @@
             <div class="tm-gallery">
                 <div class="row">
                     <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
-                        <a style="text-decoration:none" href="@Url.Action("Istorija", "TechninesApziuros")">
-                            <div class="tm-gallery-item-overlay">
-                                <img src="img/2.jpg" alt="Image" class="img-fluid tm-img-center">
-                            </div>
-
-                            <p class="tm-figcaption">Apžiūros istorija</p>
-                        </a>
-                    </figure>
-                    <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
-                        <a style="text-decoration:none" href="@Url.Action("Deklaravimas", "TechninesApziuros")">
-                            <div class="tm-gallery-item-overlay">
-                                <img src="img/4.jpg" alt="Image" class="img-fluid tm-img-center">
-                            </div>
-                            <p class="tm-figcaption">Duomenų deklaravimas</p>
-                        </a>
-                    </figure>
-                    <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
                         <a style="text-decoration:none" href="@Url.Action("Skaiciuokle", "TechninesApziuros")">
                             <div class="tm-gallery-item-overlay">
                                 <img src="img/3.jpg" alt="Image" class="img-fluid tm-img-center">
@@ -42,23 +25,46 @@
                             <p class="tm-figcaption">Taršos mokesčio skaičiuoklė</p>
                         </a>
                     </figure>
-                    <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
-                        <a style="text-decoration:none" href="#">
-                            <div class="tm-gallery-item-overlay">
-                                <img src="img/6.jpg" alt="Image" class="img-fluid tm-img-center">
-                            </div>
-                            <p class="tm-figcaption">Vienos dienos leidimas</p>
-                        </a>
-                    </figure>
-                    <figure class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <a style="text-decoration:none" href="#">
-                            <div class="tm-gallery-item-overlay">
-                                <img src="img/5.jpg" alt="Image" class="img-fluid tm-img-center">
-                            </div>
-                            <p class="tm-figcaption">Registracija apžiūrai</p>
-                        </a>
-                    </figure>
+                    @if (@HttpContextAccessor.HttpContext.Session.GetString("username") != null && @HttpContextAccessor.HttpContext.Session.GetInt32("isEmployee") == 1)
+                    {
+                        <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
+                            <a style="text-decoration:none" href="@Url.Action("Deklaravimas", "TechninesApziuros")">
+                                <div class="tm-gallery-item-overlay">
+                                    <img src="img/4.jpg" alt="Image" class="img-fluid tm-img-center">
+                                </div>
+                                <p class="tm-figcaption">Duomenų deklaravimas</p>
+                            </a>
+                        </figure>
 
+                    }
+                    @if (@HttpContextAccessor.HttpContext.Session.GetString("username") != null && @HttpContextAccessor.HttpContext.Session.GetInt32("isEmployee") == 0)
+                    {
+                        <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
+                            <a style="text-decoration:none" href="@Url.Action("Istorija", "TechninesApziuros")">
+                                <div class="tm-gallery-item-overlay">
+                                    <img src="img/2.jpg" alt="Image" class="img-fluid tm-img-center">
+                                </div>
+
+                                <p class="tm-figcaption">Apžiūros istorija</p>
+                            </a>
+                        </figure>
+                        <figure class="col-lg-3 col-md-3 col-sm-6 col-12 tm-gallery-item">
+                            <a style="text-decoration:none" href="#">
+                                <div class="tm-gallery-item-overlay">
+                                    <img src="img/6.jpg" alt="Image" class="img-fluid tm-img-center">
+                                </div>
+                                <p class="tm-figcaption">Vienos dienos leidimas</p>
+                            </a>
+                        </figure>
+                        <figure class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                            <a style="text-decoration:none" href="#">
+                                <div class="tm-gallery-item-overlay">
+                                    <img src="img/5.jpg" alt="Image" class="img-fluid tm-img-center">
+                                </div>
+                                <p class="tm-figcaption">Registracija apžiūrai</p>
+                            </a>
+                        </figure>
+                    }
                 </div>
             </div>
         </section>

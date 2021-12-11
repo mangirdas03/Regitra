@@ -14,28 +14,28 @@
         <section class="tm-margin-b-l">
             <h2 class="pagetitle">Vairuotojo pažymėjimo būklė</h2>
             <br />
-            <p class="page_infotext">Instrukcija darbuotojui: Iš sąrašo pasirinkite automobilį ir įveskite jo naujus valstybinius numerius.</p>
+            <p class="page_infotext">Šiame puslapyje galite pasitikrinti pažymėjimo statusą.</p>
             <br />
             <br />
-            <div style="padding-left:200px">
+            <div style="padding-left:150px">
                 @if (Model != null)
                 {
                     @if (Model.PazymejimoBukle == 1)
                     {
-                        <p style="text-align: left; font-size: larger">Jūsų vairuotojo pažymėjimo būklė: užsakytas.</p>
+                        <p style="text-align: left; font-size: larger">Jūsų vairuotojo pažymėjimo būklė: <strong>užsakytas</strong>.</p>
                     }
                     else if (Model.PazymejimoBukle == 2)
                     {
-                        <p style="text-align: left; font-size: larger">Jūsų vairuotojo pažymėjimo būklė: pagamintas.</p>
+                        <p style="text-align: left; font-size: larger">Jūsų vairuotojo pažymėjimo būklė: <strong>pagamintas</strong>.</p>
                     }
                     else
                     {
-                        <p style="text-align: left; font-size: larger">Jūsų vairuotojo pažymėjimo būklė: pristatytas.</p>
+                        <p style="text-align: left; font-size: larger">Jūsų vairuotojo pažymėjimo būklė: <strong>pristatytas</strong>.</p>
                     }
                 }
                 else
                 {
-                    <p style="text-align: left; font-size: larger">Dėje, bet vairuotojo pažymėjimo neturite.</p>
+                    <p style="text-align: left; font-size: larger">Vairuotojo pažymėjimo neturite.</p>
                 }
             </div>
         </section>

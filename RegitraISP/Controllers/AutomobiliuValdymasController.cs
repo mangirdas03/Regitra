@@ -33,26 +33,33 @@ namespace RegitraISP.Controllers
               });
         }
 
-        public IActionResult Index()
+
+        public IActionResult Index() // VISI
         {
             return View();
         }
-        public IActionResult SDK()
+
+
+        public IActionResult SDK() // NAUDOTOJAS
         {
-            KlientasAutomobilisPasas kap = new KlientasAutomobilisPasas();
-            List<Automobili> allCars = _context.Automobilis.ToList();
-            List<Automobili> clientCars = new List<Automobili>();
-            var userid = HttpContext.Session.GetString("userid");
-            foreach (Automobili car in allCars)
+            if (HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 0)
             {
-                if(car.FkKlientasasmensKodas == userid)
+                KlientasAutomobilisPasas kap = new KlientasAutomobilisPasas();
+                List<Automobili> allCars = _context.Automobilis.ToList();
+                List<Automobili> clientCars = new List<Automobili>();
+                var userid = HttpContext.Session.GetString("userid");
+                foreach (Automobili car in allCars)
                 {
-                    clientCars.Add(car);
+                    if (car.FkKlientasasmensKodas == userid)
+                    {
+                        clientCars.Add(car);
+                    }
                 }
+                kap.Automobiliai = clientCars;
+
+                return View(kap);
             }
-            kap.Automobiliai = clientCars;
-            
-            return View(kap);
+            else return RedirectToAction("Login", "Home");
         }
         [HttpPost]
         public IActionResult SDK(KlientasAutomobilisPasas data)
@@ -72,12 +79,20 @@ namespace RegitraISP.Controllers
             Task.Delay(1600).Wait();
             return RedirectToAction("SDK", "AutomobiliuValdymas");
         }
-        public IActionResult Deklaravimas()
-        {
-            ViewBag.kap = users;
-            return View();
-        }
 
+
+
+
+
+        public IActionResult Deklaravimas() // DARBUOTOJAS
+        {
+            if (HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 1)
+            {
+                ViewBag.kap = users;
+                return View();
+            }
+            else return RedirectToAction("Login", "Home");
+        }
         [HttpPost]
         public IActionResult Deklaravimas(KlientasAutomobilisPasas data)
         {
@@ -121,13 +136,20 @@ namespace RegitraISP.Controllers
             }
             return RedirectToAction("Index", "AutomobiliuValdymas");
         }
-        public IActionResult Perleidimas()
-        {
-            ViewBag.usr = users;
-            ViewBag.car = cars;
-            return View();
-        }
 
+
+
+
+        public IActionResult Perleidimas() // DARBUOTOJAS
+        {
+            if (HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 1)
+            {
+                ViewBag.usr = users;
+                ViewBag.car = cars;
+                return View();
+            }
+            else return RedirectToAction("Login", "Home");
+        }
         [HttpPost]
         public IActionResult Perleidimas(KlientasAutomobilisPasas data)
         {
@@ -151,7 +173,6 @@ namespace RegitraISP.Controllers
                     }
                 }
             }
-
             catch
             {
                 return RedirectToAction("Perleidimas");
@@ -159,12 +180,18 @@ namespace RegitraISP.Controllers
             return RedirectToAction("Index", "AutomobiliuValdymas");
         }
 
-        public IActionResult Numeriai()
-        {
-            ViewBag.car = cars;
-            return View();
-        }
 
+
+
+        public IActionResult Numeriai() // DARBUOTOJAS
+        {
+            if (HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 1)
+            {
+                ViewBag.car = cars;
+                return View();
+            }
+            else return RedirectToAction("Login", "Home");
+        }
         [HttpPost]
         public IActionResult Numeriai(Automobili data)
         {
@@ -186,12 +213,18 @@ namespace RegitraISP.Controllers
             return RedirectToAction("Index", "AutomobiliuValdymas");
         }
 
-        public IActionResult Atnaujinimas()
-        {
-            ViewBag.car = cars;
-            return View();
-        }
 
+
+
+        public IActionResult Atnaujinimas() // DARBUOTOJAS
+        {
+            if (HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 1)
+            {
+                ViewBag.car = cars;
+                return View();
+            }
+            else return RedirectToAction("Login", "Home");
+        }
         [HttpPost]
         public IActionResult Atnaujinimas(KlientasAutomobilisPasas data)
         {
@@ -225,7 +258,6 @@ namespace RegitraISP.Controllers
                     }
                 }
             }
-
             catch
             {
                 return RedirectToAction("Atnaujinimas");

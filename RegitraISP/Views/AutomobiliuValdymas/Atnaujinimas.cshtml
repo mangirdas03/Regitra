@@ -14,7 +14,7 @@
         <section class="tm-margin-b-l">
             <h2 class="pagetitle">Automobilio duomenų atnaujinimas</h2>
             <br />
-            <p class="page_infotext">Instrukcija darbuotojui: Iš sąrašo pasirinkite automobilį ir įveskite duomenis, kuriuos norite atnaujinti.</p>
+            <p class="page_infotext">Instrukcija darbuotojui: Iš sąrašo pasirinkite automobilį ir įveskite duomenis, kuriuos norite atnaujinti. <strong>Palikite tuščią laukelį prie duomenų, kurių nenorite keisti.</strong></p>
             <br />
             <br />
             <div style="padding-left:200px">
@@ -25,6 +25,7 @@
                     @Html.DropDownListFor(m => m.Vin, ViewBag.car as IEnumerable<SelectListItem>, "pasirinkite")
                     <br />
                     <br />
+                    <p><h2>Atnaujinami duomenys:</h2></p>
                     <p style="font-size: larger">Automobilio spalva</p>
                     <input type="text" asp-for="AutomobilioSpalva" value="" />
                     <span asp-validation-for="AutomobilioSpalva" class="text-danger"></span>

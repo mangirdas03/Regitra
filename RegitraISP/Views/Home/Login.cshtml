@@ -14,7 +14,7 @@
             <div style="text-align:left; margin:auto;">
                 <form method="post" asp-controller="Home" asp-action="Login" style="width:55%; margin:auto">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <table id="logintable">
+                    <table id="logintable" style="font-size: 22px;">
                         <tr>
                             <td>Prisijungimo vardas:</td>
                             <td>
@@ -33,8 +33,8 @@
                             <td>&nbsp;</td>
                             <td>
                                 <br />
-                                <input style="margin-left:0px;" class="btn btn-success" type="submit" value="Prisijungti" />
-                                <a class="btn btn-info" href="@Url.Action("Register", "Home")">Registruotis</a>
+                                <input style="margin-left:0px;" class="btn btn-success btn-lg" type="submit" value="Prisijungti" />
+                                <a class="btn btn-info btn-lg" href="@Url.Action("Register", "Home")">Registruotis</a>
                             </td>
                         </tr>
                     </table>

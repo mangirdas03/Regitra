@@ -12,18 +12,27 @@
 <section id="section" class="bodysection">
     <div class="container_white">
         <section class="tm-margin-b-l">
-            <h2 class="pagetitle">Techninės apžiūrų istorija</h2>
+            <h2 class="pagetitle">Techninių apžiūrų istorija</h2>
             <br />
-            <p class="page_infotext">Instrukcija darbuotojui: Iš sąrašo pasirinkite klientą ir įveskite visus jo deklaruojamo automobilio duomenis.</p>
+            <p class="page_infotext">Šiame puslapyje galite matyti savo automobilių techninių apžiūrų istoriją.</p>
             <br />
             <br />
-            <div style="padding-left:200px">
+            <div >
                 @foreach (var car in Model.automobiliai)
                 {
                     if (HttpContextAccessor.HttpContext.Session.GetString("username") == car.FkKlientasasmensKodas)
                     {
                         <p style="text-align: center; font-size: larger">Automobilis: @car.Marke @car.Modelis, @car.Vin</p>
                         <table class="table table-hover table-dark" style="background-color: #4ca1af; box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.8); ">
+                            <colgroup>
+                                <col span="1" style="width: 10%;">
+                                <col span="1" style="width: 8%;">
+                                <col span="1" style="width: 10%;">
+                                <col span="1" style="width: 14%;">
+                                <col span="1" style="width: 14%;">
+                                <col span="1" style="width: 14%;">
+                                <col span="1" style="width: 30%;">
+                            </colgroup>
                             <tr>
                                 <th>Atlikimo data</th>
                                 <th>Rida</th>
@@ -38,7 +47,8 @@
                                 if (car.Vin == check.FkAutomobilisvin)
                                 {
                                     <tr>
-                                        <th>@check.AtlikimoData</th>
+                                        @*<th>@check.AtlikimoData</th>*@
+                                        <th>@Html.FixDateFormat(check.AtlikimoData)</th>
                                         <th>@check.DabartineRida</th>
                                         <th>@check.Dumingumas</th>
                                         <th>@check.KebuloBukle</th>

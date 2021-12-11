@@ -25,7 +25,7 @@ namespace RegitraISP.Controllers
         }
 
 
-        public IActionResult Filialai()
+        public IActionResult Filialai() // VISI
         {
             // Kuriamas Filialu ir Miestu viewmodelis
             FilialaiMiestai fm = new FilialaiMiestai();
@@ -34,13 +34,11 @@ namespace RegitraISP.Controllers
             return View(fm);
         }
 
-        // Registracija i egzaminus
-        public IActionResult Registracija()
+        public IActionResult Registracija() // NAUDOTOJAS
         {
             // Praleidziamas tik useris.
             if(HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 0)
             {
-                // Kuriamas Filialu ir Miestu viewmodelis
                 KlientasEgzaminas ke = new KlientasEgzaminas();
                 ke.Filialai = _context.Filialas.ToList();
                 ke.Egzaminai = _context.Egzaminas.ToList();
@@ -49,14 +47,10 @@ namespace RegitraISP.Controllers
             }
             else if(HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 1)
             {
-// Alertas darbuotojui?
                 return RedirectToAction("EmployeeDashboard", "Home");
             }
             else return RedirectToAction("Login", "Home");
-
         }
-
-        // Registracija i egzaminus
         [HttpPost]
         public IActionResult Registracija(IFormCollection data)
         {
@@ -96,24 +90,22 @@ namespace RegitraISP.Controllers
                     _context.Klientas.Update(temp);
                     _context.SaveChanges();
                 }
-                
             }
             catch
             {
                 TempData["Error"] = "Galite registruotis tik į vieną egzaminą";
                 return View("Registracija");
             }
-            //return View("Index");
             Task.Delay(1600).Wait();
             return RedirectToAction("Registracija", "Egzaminavimas");
-            //return RedirectToAction("Index");
         }
 
-        public IActionResult Apeliacija()
+
+
+        public IActionResult Apeliacija() // NAUDOTOJAS
         {
             if (HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 0)
             {
-                // Kuriamas Filialu ir Miestu viewmodelis
                 KlientasEgzaminas ke = new KlientasEgzaminas();
                 ke.Filialai = _context.Filialas.ToList();
                 ke.Egzaminai = _context.Egzaminas.ToList();
@@ -122,12 +114,10 @@ namespace RegitraISP.Controllers
             }
             else if (HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 1)
             {
-                // Alertas darbuotojui?
                 return RedirectToAction("EmployeeDashboard", "Home");
             }
             else return RedirectToAction("Login", "Home");
         }
-
         [HttpPost]
         public IActionResult Apeliacija(IFormCollection data)
         {
@@ -166,7 +156,9 @@ namespace RegitraISP.Controllers
             //return RedirectToAction("Index");
         }
 
-        public IActionResult Demo()
+
+
+        public IActionResult Demo() // VISI
         {
             return View();
         }

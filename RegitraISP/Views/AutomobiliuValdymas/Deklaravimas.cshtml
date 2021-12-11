@@ -25,6 +25,7 @@
                     @Html.DropDownListFor(m => m.asmens_kodas, ViewBag.kap as IEnumerable<SelectListItem>, "pasirinkite")
                     <br />
                     <br />
+                    <p><h2>Automobilio duomenys:</h2></p>
                     <p style="font-size: larger">VIN</p>
                     <input type="text" asp-for="Vin" value="" />
                     <span asp-validation-for="Vin" class="text-danger"></span>

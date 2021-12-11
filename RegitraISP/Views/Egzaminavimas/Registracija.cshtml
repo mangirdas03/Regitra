@@ -17,7 +17,7 @@
             <br />
             <br />
 
-            <p style="text-align: center; font-size: larger">Teorijos egzaminai</p>
+            <p style="text-align: center; font-size: larger; font-weight:bold;">Teorijos egzaminai</p>
             <form method="post" asp-controller="Egzaminavimas" asp-action="Registracija" id="mf">
                 <input type="hidden" name="name" value="@HttpContextAccessor.HttpContext.Session.GetString("username")" />
                 <table class="table table-hover table-dark" style="background-color: #4ca1af; box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.8); ">
@@ -74,7 +74,7 @@
 
                 <br />
                 <br />
-                <p style="text-align: center; font-size: larger">Praktikos egzaminai</p>
+                <p style="text-align: center; font-size: larger; font-weight:bold;">Praktikos egzaminai</p>
                 <table class="table table-hover table-dark" style="background-color: #4ca1af; box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.8); ">
                     <colgroup>
                         <col span="1" style="width: 15%;">

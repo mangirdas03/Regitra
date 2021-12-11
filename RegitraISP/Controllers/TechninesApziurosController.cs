@@ -24,18 +24,26 @@ namespace RegitraISP.Controllers
                   Text = string.Format("{0} {1}, {2}", d.Marke, d.Modelis, d.Vin)
               });
         }
-        public IActionResult Index()
+        public IActionResult Index() // VISI
         {
             return View();
         }
-        public IActionResult Skaiciuokle()
+
+
+        public IActionResult Skaiciuokle() // VISI
         {
             return View();
         }
-        public IActionResult Deklaravimas()
+
+
+        public IActionResult Deklaravimas() // DARBUOTOJAS
         {
-            ViewBag.car = cars;
-            return View();
+            if (HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 1)
+            {
+                ViewBag.car = cars;
+                return View();
+            }
+            else return RedirectToAction("Login", "Home");
         }
         [HttpPost]
         public IActionResult Deklaravimas(AutomobilisApziura aa)
@@ -64,12 +72,18 @@ namespace RegitraISP.Controllers
             return RedirectToAction("Index", "TechninesApziuros");
         }
 
-        public IActionResult Istorija()
+
+
+        public IActionResult Istorija() // NAUDOTOJAS
         {
-            AutomobilisApziura aa = new AutomobilisApziura();
-            aa.apziuros = _context.TechnineApziuras.ToList();
-            aa.automobiliai = _context.Automobilis.ToList();
-            return View(aa);
+            if (HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 0)
+            {
+                AutomobilisApziura aa = new AutomobilisApziura();
+                aa.apziuros = _context.TechnineApziuras.ToList();
+                aa.automobiliai = _context.Automobilis.ToList();
+                return View(aa);
+            }
+            else return RedirectToAction("Login", "Home");
         }
     }
 }

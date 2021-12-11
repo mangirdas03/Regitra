@@ -14,17 +14,17 @@
         <section class="tm-margin-b-l">
             <h2 class="pagetitle">Techninės apžiūros duomenų deklaravimas</h2>
             <br />
-            <p class="page_infotext">Instrukcija darbuotojui: Iš sąrašo pasirinkite klientą ir įveskite visus jo deklaruojamo automobilio duomenis.</p>
+            <p class="page_infotext">Instrukcija darbuotojui: Iš sąrašo pasirinkite automobilį ir įveskite visus jo techninės apžiūros duomenis.</p>
             <br />
             <br />
             <div style="padding-left:200px">
                 <form method="post" asp-controller="TechninesApziuros" asp-action="Deklaravimas" id="av">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <input type="hidden" asp-for="TabelioNr" value="@HttpContextAccessor.HttpContext.Session.GetString("username")" />
                     <p><h2>Pasirinkite automobilį:</h2></p>
                     @Html.DropDownListFor(m => m.Vin, ViewBag.car as IEnumerable<SelectListItem>, "pasirinkite")
                     <br />
                     <br />
+                    <p><h2>Techninės apžiūros duomenys:</h2></p>
                     <p style="font-size: larger">Dabartinė rida:</p>
                     <input type="text" asp-for="DabartineRida" value="" />
                     <span asp-validation-for="DabartineRida" class="text-danger"></span>
@@ -51,8 +51,7 @@
                     <br />
                     <br />
                     <p style="font-size: larger">Pastabos:</p>
-                    <input type="text" asp-for="Pastabos" value="" />
-                    <span asp-validation-for="Pastabos" class="text-danger"></span>
+                    <textarea type="text" asp-for="Pastabos" value="" rows="10" cols="50"></textarea>
                     <br />
                     <br />
                     <button id="btn_reg" style="margin-left:0px;" class="btn btn-dark" type="submit" name="egz" value="">Deklaruoti rodmenis</button>

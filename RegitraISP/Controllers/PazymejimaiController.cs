@@ -24,17 +24,20 @@ namespace RegitraISP.Controllers
         }
 
 
-        public IActionResult Index()
+        public IActionResult Index() // VISI
         {
             return View();
         }
 
 
-        public IActionResult Ikelimas()
+        public IActionResult Ikelimas() // NAUDOTOJAS
         {
-            return View();
+            if (HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 0)
+            {
+                return View();
+            }
+            else return RedirectToAction("Login", "Home");
         }
-
         [HttpPost]
         public IActionResult Ikelimas(Nuotrauka model)
         {
@@ -47,9 +50,6 @@ namespace RegitraISP.Controllers
             Task.Delay(1600).Wait();
             return RedirectToAction("UserDashboard", "Home");
         }
-
-
-
 
         private string UploadedFile(Nuotrauka model)
         {
@@ -70,20 +70,27 @@ namespace RegitraISP.Controllers
 
 
 
-        public IActionResult DemoPazymejimas()
+        public IActionResult DemoPazymejimas() // NAUDOTOJAS
         {
-            Klienta user = _context.Klientas.Where(a => a.AsmensKodas.Equals(HttpContext.Session.GetString("username"))).FirstOrDefault();
-            return View(user);
+            if (HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 0)
+            {
+                Klienta user = _context.Klientas.Where(a => a.AsmensKodas.Equals(HttpContext.Session.GetString("username"))).FirstOrDefault();
+                return View(user);
+            }
+            else return RedirectToAction("Login", "Home");
         }
 
-        public IActionResult Bukle()
+
+
+        public IActionResult Bukle() // NAUDOTOJAS
         {
-            VairuotojoPazymejima pazym = _context.VairuotojoPazymejimas.Where(a => a.FkKlientasasmensKodas.Equals(HttpContext.Session.GetString("username"))).FirstOrDefault();
-            return View(pazym);
+            if (HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 0)
+            {
+                VairuotojoPazymejima pazym = _context.VairuotojoPazymejimas.Where(a => a.FkKlientasasmensKodas.Equals(HttpContext.Session.GetString("username"))).FirstOrDefault();
+                return View(pazym);
+            }
+            else return RedirectToAction("Login", "Home");
         }
-
-
-
 
     }
 }
