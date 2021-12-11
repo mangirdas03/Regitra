@@ -92,5 +92,81 @@ namespace RegitraISP.Controllers
             else return RedirectToAction("Login", "Home");
         }
 
+
+        public IActionResult Uzsakymas()
+        {
+            // Paduoda klientą bei pažymėjimų sąrašą į View (Uzsakymas)
+            KlientasPazymejimas kp = new KlientasPazymejimas();
+            string user = HttpContext.Session.GetString("username");
+            kp.Klientas = _context.Klientas.Where(a => a.AsmensKodas.Equals(user)).FirstOrDefault();
+            kp.Pazymejimas = _context.VairuotojoPazymejimas.Where(a => a.FkKlientasasmensKodas.Equals(user)).FirstOrDefault();
+            return View(kp);
+        }
+
+        [HttpPost]
+        public IActionResult UzsakymasProcess()
+        {
+            try
+            {
+                // Vartotojas
+                string user = HttpContext.Session.GetString("username");
+
+                // Ar išlaikęs teorijos egzaminą
+                bool isTheory = _context.Klientas.Where(a => a.AsmensKodas.Equals(user)).FirstOrDefault(a => a.TeorijosEgzIslaikytas).TeorijosEgzIslaikytas;
+
+                // Ar išlaikęs praktikos egzaminą
+                bool isPractice = _context.Klientas.Where(a => a.AsmensKodas.Equals(user)).FirstOrDefault(a => a.PraktikosEgzIslaikytas).PraktikosEgzIslaikytas;
+
+                // Jeigu išlaikęs abu egzaminus
+                if (isTheory && isPractice)
+                {
+                    // Užpildo VairuotojoPazymejimas DB lentelę
+                    VairuotojoPazymejima vp = new VairuotojoPazymejima();
+                    //vp.PazymejimoNr = _context.VairuotojoPazymejimas.OrderBy(a => a.PazymejimoNr).Select(a => a.PazymejimoNr).LastOrDefault() + 1;
+                    vp.PagaminimoData = DateTime.Today.AddDays(10); // Pagamina per 10 dienų
+                    vp.GaliojimoData = DateTime.Today.AddYears(2); // Galioja 2 metus
+                    vp.PazymejimoBukle = 1;
+                    vp.FkKlientasasmensKodas = _context.Klientas.Where(a => a.AsmensKodas.Equals(user)).FirstOrDefault().AsmensKodas;
+
+                    // Įrašo duomenis į duomenų bazę
+                    _context.VairuotojoPazymejimas.Add(vp);
+                    _context.SaveChanges();
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Uzsakymas");
+            }
+            return RedirectToAction("Index", "Pazymejimai");
+        }
+
+        public IActionResult Atnaujinimas()
+        {
+            // Paduoda klientą bei pažymėjimų sąrašą į View (Atnaujinimas)
+            KlientasPazymejimas kp = new KlientasPazymejimas();
+            string user = HttpContext.Session.GetString("username");
+            kp.Klientas = _context.Klientas.Where(a => a.AsmensKodas.Equals(user)).FirstOrDefault();
+            kp.Pazymejimas = _context.VairuotojoPazymejimas.Where(a => a.FkKlientasasmensKodas.Equals(user)).FirstOrDefault();
+            return View(kp);
+        }
+
+        [HttpPost]
+        public IActionResult AtnaujinimasProcess()
+        {
+            // Vartotojas
+            string user = HttpContext.Session.GetString("username");
+
+            // Atnaujina galiojimo datą VairuotojoPazymejimas DB lentelėje
+            VairuotojoPazymejima vp = new VairuotojoPazymejima();
+            vp = _context.VairuotojoPazymejimas.Where(a => a.FkKlientasasmensKodas.Equals(user)).FirstOrDefault();
+            vp.GaliojimoData = DateTime.Today.AddYears(10); // Pratęsia galiojima 10 metų
+
+            // Įrašo duomenis į duomenų bazę
+            _context.VairuotojoPazymejimas.Update(vp);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Pazymejimai");
+        }
+
     }
 }

@@ -1,0 +1,37 @@
+﻿@*
+    Vairuotojo pažymėjimo užsakymas
+*@
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model RegitraISP.ViewModels.KlientasPazymejimas
+@{
+    ViewData["Title"] = "Uzsakymas";
+}
+
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+<section id="section" class="bodysection">
+    <div class="container_white">
+        <section class="tm-margin-b-l">
+            <h2 class="pagetitle">Vairuotojo pažymėjimo užsakymas</h2>
+            <br />
+            <p class="page_infotext">Šiame puslapyje galite užsisakyti vairuotojo pažymėjimą</p>
+            <br />
+            <br />
+            @if (Model.Klientas.TeorijosEgzIslaikytas && Model.Klientas.PraktikosEgzIslaikytas && Model.Pazymejimas == null)
+             {
+                <form method="post" asp-controller="Pazymejimai" asp-action="UzsakymasProcess" id="p">
+                    <input type="submit" value="Uzsakyti" />
+                </form>
+             }
+            @if (Model.Pazymejimas != null)
+             {
+                <p class="page_infotext">Jūs vairuotojo pažymėjimą jau esate užsisakę</p>
+             }
+            @if (!Model.Klientas.TeorijosEgzIslaikytas || !Model.Klientas.PraktikosEgzIslaikytas)
+             {
+                <p class="page_infotext">Kad galėtumėte užsisakyti vairuotojo pažymėjimą, turite išlaikyti teorijos bei praktikos egzaminus</p>
+             }
+        </section>
+    </div>
+</section>
+

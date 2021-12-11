@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\RegitraISP",
+    "\\RegitraISP\\Controllers",
+    "\\RegitraISP\\ViewModels",
+    "\\RegitraISP\\Views",
+    "\\RegitraISP\\Views\\Pazymejimai"
   ],
-  "SelectedNode": "\\RegitraISP.sln",
+  "SelectedNode": "\\RegitraISP\\Controllers\\PazymejimaiController.cs",
   "PreviewInSolutionExplorer": false
 }

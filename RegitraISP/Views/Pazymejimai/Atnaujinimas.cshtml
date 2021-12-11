@@ -1,0 +1,36 @@
+﻿@*
+    Vairuotojo pažymėjimo atnaujinimas
+*@
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model RegitraISP.ViewModels.KlientasPazymejimas
+@{
+    ViewData["Title"] = "Atnaujinimas";
+}
+
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+<section id="section" class="bodysection">
+    <div class="container_white">
+        <section class="tm-margin-b-l">
+            <h2 class="pagetitle">Vairuotojo pažymėjimo atnaujinimas</h2>
+            <br />
+            <p class="page_infotext">Šiame puslapyje galite atnaujinti vairuotojo pažymėjimą</p>
+            <br />
+            <br />
+            @if (Model.Pazymejimas != null && DateTime.Today > Model.Pazymejimas.GaliojimoData)
+            {
+                <form method="post" asp-controller="Pazymejimai" asp-action="AtnaujinimasProcess" id="p">
+                    <button type="submit" value="">Atnaujinti pažymėjimą</button>
+                </form>
+            }
+            @if (Model.Pazymejimas != null && DateTime.Today <= Model.Pazymejimas.GaliojimoData)
+            {
+                <p class="page_infotext">Jūsų vairuotojo pažymėjimo galiojimo laikas dar nepasibaigė</p>
+            }
+            @if (Model.Pazymejimas == null)
+            {
+                <p class="page_infotext">Jus nesate užsisakęs vairuotojo pažymėjimo</p>
+            }
+        </section>
+    </div>
+</section>
