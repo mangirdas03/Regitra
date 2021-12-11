@@ -1,0 +1,63 @@
+﻿@model RegitraISP.ViewModels.AutomobilisApziura
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@*
+
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Deklaravimas";
+}
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+<section id="section" class="bodysection">
+    <div class="container_white">
+        <section class="tm-margin-b-l">
+            <h2 class="pagetitle">Techninės apžiūros duomenų deklaravimas</h2>
+            <br />
+            <p class="page_infotext">Instrukcija darbuotojui: Iš sąrašo pasirinkite klientą ir įveskite visus jo deklaruojamo automobilio duomenis.</p>
+            <br />
+            <br />
+            <div style="padding-left:200px">
+                <form method="post" asp-controller="TechninesApziuros" asp-action="Deklaravimas" id="av">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="TabelioNr" value="@HttpContextAccessor.HttpContext.Session.GetString("username")" />
+                    <p><h2>Pasirinkite automobilį:</h2></p>
+                    @Html.DropDownListFor(m => m.Vin, ViewBag.car as IEnumerable<SelectListItem>, "pasirinkite")
+                    <br />
+                    <br />
+                    <p style="font-size: larger">Dabartinė rida:</p>
+                    <input type="text" asp-for="DabartineRida" value="" />
+                    <span asp-validation-for="DabartineRida" class="text-danger"></span>
+                    <br />
+                    <br />
+                    <p style="font-size: larger">Dūmingumas:</p>
+                    <input type="text" asp-for="Dumingumas" value="" />
+                    <span asp-validation-for="Dumingumas" class="text-danger"></span>
+                    <br />
+                    <br />
+                    <p style="font-size: larger">Važiuoklės būklė:</p>
+                    <input type="text" asp-for="VaziuoklesBukle" value="" />
+                    <span asp-validation-for="VaziuoklesBukle" class="text-danger"></span>
+                    <br />
+                    <br />
+                    <p style="font-size: larger">Variklio būklė:</p>
+                    <input type="text" asp-for="VariklioBukle" value="" />
+                    <span asp-validation-for="VariklioBukle" class="text-danger"></span>
+                    <br />
+                    <br />
+                    <p style="font-size: larger">Kėbulo būklė:</p>
+                    <input type="text" asp-for="KebuloBukle" value="" />
+                    <span asp-validation-for="KebuloBukle" class="text-danger"></span>
+                    <br />
+                    <br />
+                    <p style="font-size: larger">Pastabos:</p>
+                    <input type="text" asp-for="Pastabos" value="" />
+                    <span asp-validation-for="Pastabos" class="text-danger"></span>
+                    <br />
+                    <br />
+                    <button id="btn_reg" style="margin-left:0px;" class="btn btn-dark" type="submit" name="egz" value="">Deklaruoti rodmenis</button>
+                </form>
+            </div>
+        </section>
+    </div>
+</section>

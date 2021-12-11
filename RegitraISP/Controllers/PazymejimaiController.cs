@@ -76,6 +76,12 @@ namespace RegitraISP.Controllers
             return View(user);
         }
 
+        public IActionResult Bukle()
+        {
+            VairuotojoPazymejima pazym = _context.VairuotojoPazymejimas.Where(a => a.FkKlientasasmensKodas.Equals(HttpContext.Session.GetString("username"))).FirstOrDefault();
+            return View(pazym);
+        }
+
 
 
 
