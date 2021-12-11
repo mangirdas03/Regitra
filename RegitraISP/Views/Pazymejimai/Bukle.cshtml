@@ -1,0 +1,43 @@
+﻿@model RegitraISP.Models.VairuotojoPazymejima
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@*
+
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Bukle";
+}
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+<section id="section" class="bodysection">
+    <div class="container_white">
+        <section class="tm-margin-b-l">
+            <h2 class="pagetitle">Vairuotojo pažymėjimo būklė</h2>
+            <br />
+            <p class="page_infotext">Instrukcija darbuotojui: Iš sąrašo pasirinkite automobilį ir įveskite jo naujus valstybinius numerius.</p>
+            <br />
+            <br />
+            <div style="padding-left:200px">
+                @if (Model != null)
+                {
+                    @if (Model.PazymejimoBukle == 1)
+                    {
+                        <p style="text-align: left; font-size: larger">Jūsų vairuotojo pažymėjimo būklė: užsakytas.</p>
+                    }
+                    else if (Model.PazymejimoBukle == 2)
+                    {
+                        <p style="text-align: left; font-size: larger">Jūsų vairuotojo pažymėjimo būklė: pagamintas.</p>
+                    }
+                    else
+                    {
+                        <p style="text-align: left; font-size: larger">Jūsų vairuotojo pažymėjimo būklė: pristatytas.</p>
+                    }
+                }
+                else
+                {
+                    <p style="text-align: left; font-size: larger">Dėje, bet vairuotojo pažymėjimo neturite.</p>
+                }
+            </div>
+        </section>
+    </div>
+</section>
