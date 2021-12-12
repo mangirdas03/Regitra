@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2021 at 06:34 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.2
+-- Generation Time: Dec 12, 2021 at 06:29 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,6 +34,13 @@ CREATE TABLE `apeliacija` (
   `fk_Klientasasmens_kodas` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `apeliacija`
+--
+
+INSERT INTO `apeliacija` (`priezastis`, `tekstas`, `id_Apeliacija`, `fk_Klientasasmens_kodas`) VALUES
+('neislaikiau teorijos', 'labai jau nesamoningi klausimai, kaip as per raudona vaziuot negaliu?', 385, '22');
+
 -- --------------------------------------------------------
 
 --
@@ -58,8 +65,10 @@ CREATE TABLE `automobilio_pasas` (
 --
 
 INSERT INTO `automobilio_pasas` (`paso_nr`, `automobilio_spalva`, `kuro_tipas`, `co2_kiekis`, `svoris`, `variklio_litrazas`, `kilovatu_skaicius`, `isdavimo_data`, `fk_Automobilisvin`, `fk_Darbuotojastabelio_nr`) VALUES
-(1, '55', '55', 55, 55, 55, 55, '2021-12-11', '55', 123),
-(234423, '1', '1', 2, 1500, 1, 1, '2021-12-11', '5345342', 123);
+(1, '55', '55', 55, 55, 55, 55, '2021-12-10', '55', 123),
+(234423, '1', '1', 2, 1, 1, 1, '2021-12-10', '5345342', 123),
+(234424, 'Balta', 'Benzinas', 101, 1200, 1.2, 57, '2020-11-21', 'SCBCD13SXKC073286', 123),
+(234425, 'Sidabrinė', 'Dyzelinas', 167, 1568, 2.2, 92, '2020-08-15', 'JF1BPDLYF8G102036', 123);
 
 -- --------------------------------------------------------
 
@@ -84,8 +93,10 @@ CREATE TABLE `automobilis` (
 --
 
 INSERT INTO `automobilis` (`vin`, `marke`, `modelis`, `sdk`, `pagaminimo_metai`, `paskutine_reg_salis`, `pirmoji_reg_salis`, `valstybiniai_numeriai`, `fk_Klientasasmens_kodas`) VALUES
-('5345342', 'Bmw', '535d', 'IVGRMUUVJ', '2021-12-01', 'Lietuva', 'Latvija', 'M5 5UKA', '22'),
-('55', '55', '55', NULL, '2021-12-03', '55', '55', '1111111', '11');
+('5345342', 'Bmw', '535d', 'KFGRYLZEY', '2021-12-01', 'Lietuva', 'Latvija', 'M5 5UKA', '11'),
+('55', '55', '55', 'GGKADKGVM', '2021-12-03', '55', '55', '55', '11'),
+('JF1BPDLYF8G102036', 'Saab', '9-3', NULL, '2002-01-21', 'Lietuva', 'Vokietija', 'KRM 245', '22'),
+('SCBCD13SXKC073286', 'Hyundai', 'i20', NULL, '2015-06-15', 'Lietuva', 'Danija', 'LHU 612', '22');
 
 -- --------------------------------------------------------
 
@@ -106,7 +117,9 @@ CREATE TABLE `darbuotojas` (
 --
 
 INSERT INTO `darbuotojas` (`tabelio_nr`, `slaptazodis`, `vardas`, `pavarde`, `fk_Filialasid_Filialas`) VALUES
-(123, '$2a$11$Fxe3TxCxAS30weev18eLiee', 'Test', 'Test1', 102);
+(123, '$2a$11$Fxe3TxCxAS30weev18eLiee', 'Test', 'Test1', 102),
+(12345, '$2a$11$0IX4G/5/CiZqeBTWM3EAtef', 'Petras', 'Petrauskas', 103),
+(23456, '$2a$11$0IX4G/5/CiZqeBTWM3EAtef', 'Jonas', 'Jonauskas', 104);
 
 -- --------------------------------------------------------
 
@@ -175,7 +188,9 @@ CREATE TABLE `filialas` (
 INSERT INTO `filialas` (`gatve`, `gatves_nr`, `teorijos_egz`, `praktikos_egz`, `id_Filialas`, `fk_Miestaspavadinimas`) VALUES
 ('Vasario 16-osios g.', 35, NULL, NULL, 100, 'Jonava'),
 ('Raudondvario pl.', 234, 1, 1, 101, 'Kaunas'),
-('V. Krėvės pr.', 120, 1, NULL, 102, 'Kaunas');
+('V. Krėvės pr.', 120, 1, NULL, 102, 'Kaunas'),
+('Lentvario g.', 7, 1, 1, 103, 'Vilnius'),
+('Šiaurės pr.', 25, 0, 1, 104, 'Klaipėda');
 
 -- --------------------------------------------------------
 
@@ -194,7 +209,7 @@ CREATE TABLE `klientas` (
   `praktikos_egz_data` date DEFAULT NULL,
   `teorijos_egz_islaikytas` tinyint(1) NOT NULL,
   `praktikos_egz_islaikytas` tinyint(1) NOT NULL,
-  `nuotrauka` varchar(20) DEFAULT NULL
+  `nuotrauka` longblob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -203,7 +218,9 @@ CREATE TABLE `klientas` (
 
 INSERT INTO `klientas` (`asmens_kodas`, `slaptazodis`, `vardas`, `pavarde`, `tel_nr`, `el_pastas`, `teorijos_egz_data`, `praktikos_egz_data`, `teorijos_egz_islaikytas`, `praktikos_egz_islaikytas`, `nuotrauka`) VALUES
 ('11', '$2a$11$t7aUxouEgFoIgoNkbxmJveq', 'Tevas', 'Motina', '5445622', '56534234', '2021-12-20', '2021-12-04', 0, 0, NULL),
-('22', '$2a$11$JhwEn2CFudWkbJKf8T2/8uk', 'Remigijus', 'Viršila', '654321', 'testtest', '2021-12-20', NULL, 0, 1, '22.jpg');
+('22', '$2a$11$JhwEn2CFudWkbJKf8T2/8uk', 'Remigijus', 'Viršila', '654321', 'testtest', NULL, NULL, 1, 1, 0x32322e6a7067),
+('33', '$2a$11$0IX4G/5/CiZqeBTWM3EAtef', '33', '33', '33', '33', NULL, NULL, 0, 0, NULL),
+('50009110000', '$2a$11$QR2TVdzt/6.HV5WdtCZMxuc', 'Remigijus', 'Viršila', '863259874', 'remvirsila@gmail.com', NULL, NULL, 0, 0, 0x35303030393131303030302e6a7067);
 
 -- --------------------------------------------------------
 
@@ -221,7 +238,9 @@ CREATE TABLE `miestas` (
 
 INSERT INTO `miestas` (`pavadinimas`) VALUES
 ('Jonava'),
-('Kaunas');
+('Kaunas'),
+('Klaipėda'),
+('Vilnius');
 
 -- --------------------------------------------------------
 
@@ -268,7 +287,9 @@ CREATE TABLE `technine_apziura` (
 --
 
 INSERT INTO `technine_apziura` (`apziuros_id`, `atlikimo_data`, `galiojimo_data`, `dabartine_rida`, `dumingumas`, `vaziuokles_bukle`, `variklio_bukle`, `kebulo_bukle`, `pastabos`, `fk_Darbuotojastabelio_nr`, `fk_Automobilisvin`) VALUES
-(3, '2021-12-11', '2023-12-11', '120000', 122, 'Bloga', 'Bloga', 'Išpuvusios arkos', 'Neblogas M paketas.', 123, '5345342');
+(1, '2021-12-12', '2023-12-12', '62015', 1, 'Tobula', 'Tobula', 'Tobula', NULL, 123, 'SCBCD13SXKC073286'),
+(2, '2021-12-01', '2023-12-01', '223189', 2.4, 'Prasta', 'Vidutinė', 'Gera', 'Reiktų pasikeisti galinio dešinio posūkio lemputę', 123, 'JF1BPDLYF8G102036'),
+(3, '2021-12-09', '2023-12-09', '223189', 2.4, 'Gera', 'Gera', 'Gera', NULL, 123, 'JF1BPDLYF8G102036');
 
 -- --------------------------------------------------------
 
@@ -289,7 +310,7 @@ CREATE TABLE `vairuotojo_pazymejimas` (
 --
 
 INSERT INTO `vairuotojo_pazymejimas` (`pazymejimo_nr`, `pagaminimo_data`, `galiojimo_data`, `pazymejimo_bukle`, `fk_Klientasasmens_kodas`) VALUES
-(1, '2021-12-13', '2023-05-19', 1, '22');
+(1, '2021-12-12', '2023-12-12', 1, '22');
 
 --
 -- Indexes for dumped tables
@@ -388,13 +409,19 @@ ALTER TABLE `vairuotojo_pazymejimas`
 -- AUTO_INCREMENT for table `automobilio_pasas`
 --
 ALTER TABLE `automobilio_pasas`
-  MODIFY `paso_nr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=234424;
+  MODIFY `paso_nr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=234426;
 
 --
 -- AUTO_INCREMENT for table `technine_apziura`
 --
 ALTER TABLE `technine_apziura`
   MODIFY `apziuros_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `vairuotojo_pazymejimas`
+--
+ALTER TABLE `vairuotojo_pazymejimas`
+  MODIFY `pazymejimo_nr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
