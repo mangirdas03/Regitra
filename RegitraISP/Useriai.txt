@@ -9,9 +9,8 @@ Naudotojai: (galima susikurt patiem)
 
 VALIDATION
 foto ikelimas
-	apeliacija
-	tech apziuros deklaravimas
-	automobilio deklaravimas
-	perleidimas (nemeta klaidos, tsg nk nevyksta)
-	numeriu redagavimas
-	auto duomenu atnaujinimas (nemeta klaidos, tsg nk nevyksta)
++tech apziuros deklaravimas
++automobilio deklaravimas
++perleidimas (nemeta klaidos, tsg nk nevyksta)
++numeriu redagavimas
++auto duomenu atnaujinimas (nemeta klaidos, tsg nk nevyksta)

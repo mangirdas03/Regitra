@@ -27,73 +27,103 @@
                     <br />
                     <p><h2>Automobilio duomenys:</h2></p>
                     <p style="font-size: larger">VIN</p>
-                    <input type="text" asp-for="Vin" value="" />
+                    <input type="text" asp-for="Vin" value="" id="vin"/>
                     <span asp-validation-for="Vin" class="text-danger"></span>
                     <br />
                     <br />
                     <p style="font-size: larger">Markė</p>
-                    <input type="text" asp-for="Marke" value="" />
+                    <input type="text" asp-for="Marke" value="" id="marke"/>
                     <span asp-validation-for="Marke" class="text-danger"></span>
                     <br />
                     <br />
                     <p style="font-size: larger">Modelis</p>
-                    <input type="text" asp-for="Modelis" value="" />
+                    <input type="text" asp-for="Modelis" value="" id="modelis"/>
                     <span asp-validation-for="Modelis" class="text-danger"></span>
                     <br />
                     <br />
                     <p style="font-size: larger">Pagaminimo metai</p>
-                    <input type="date" asp-for="PagaminimoMetai" value="" />
+                    <input type="date" asp-for="PagaminimoMetai" value="" id="met"/>
                     <span asp-validation-for="PagaminimoMetai" class="text-danger"></span>
                     <br />
                     <br />
                     <p style="font-size: larger">Paskutinė registruota šalis</p>
-                    <input type="text" asp-for="PaskutineRegSalis" value="" />
+                    <input type="text" asp-for="PaskutineRegSalis" value="" id="pask"/>
                     <span asp-validation-for="PaskutineRegSalis" class="text-danger"></span>
                     <br />
                     <br />
                     <p style="font-size: larger">Pirmoji registruota šalis</p>
-                    <input type="text" asp-for="PirmojiRegSalis" value="" />
+                    <input type="text" asp-for="PirmojiRegSalis" value="" id="pirm"/>
                     <span asp-validation-for="PirmojiRegSalis" class="text-danger"></span>
                     <br />
                     <br />
                     <p style="font-size: larger">Valstybiniai numeriai</p>
-                    <input type="text" asp-for="ValstybiniaiNumeriai" value="" />
+                    <input type="text" asp-for="ValstybiniaiNumeriai" value="" id="num"/>
                     <span asp-validation-for="ValstybiniaiNumeriai" class="text-danger"></span>
                     <br />
                     <br />
                     <p style="font-size: larger">Automobilio spalva</p>
-                    <input type="text" asp-for="AutomobilioSpalva" value="" />
+                    <input type="text" asp-for="AutomobilioSpalva" value="" id="spalv"/>
                     <span asp-validation-for="AutomobilioSpalva" class="text-danger"></span>
                     <br />
                     <br />
                     <p style="font-size: larger">Kuro tipas</p>
-                    <input type="text" asp-for="KuroTipas" value="" />
+                    <input type="text" asp-for="KuroTipas" value="" id="kuras"/>
                     <span asp-validation-for="KuroTipas" class="text-danger"></span>
                     <br />
                     <br />
                     <p style="font-size: larger">CO₂ kiekis</p>
-                    <input type="text" asp-for="Co2Kiekis" value="" />
+                    <input type="number" asp-for="Co2Kiekis" value="" id="codu"/>
                     <span asp-validation-for="Co2Kiekis" class="text-danger"></span>
                     <br />
                     <br />
                     <p style="font-size: larger">Svoris</p>
-                    <input type="text" asp-for="Svoris" value="" />
+                    <input type="number" asp-for="Svoris" value="" id="svor"/>
                     <span asp-validation-for="Svoris" class="text-danger"></span>
                     <br />
                     <br />
                     <p style="font-size: larger">Variklio litražas</p>
-                    <input type="text" asp-for="VariklioLitrazas" value="" />
+                    <input type="number" step=any asp-for="VariklioLitrazas" value="" id="ltr"/>
                     <span asp-validation-for="VariklioLitrazas" class="text-danger"></span>
                     <br />
                     <br />
                     <p style="font-size: larger">Kilovatų skaičius</p>
-                    <input type="text" asp-for="KilovatuSkaicius" value="" />
+                    <input type="number" asp-for="KilovatuSkaicius" value="" id="kw"/>
                     <span asp-validation-for="KilovatuSkaicius" class="text-danger"></span>
                     <br />
                     <br />
-                    <button id="btn_reg" style="margin-left:0px;" class="btn btn-dark" type="submit" name="egz" value="">OK</button>
+                    <button id="btn_reg" style="margin-left:0px;" class="btn btn-dark" type="submit" name="egz" value="">Pateikti</button>
                 </form>
             </div>
         </section>
     </div>
 </section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#av").submit(function (event) {
+            var e = document.getElementById("asmens_kodas");
+            var val = e.options[e.selectedIndex].value;
+
+            if (val == "" || $("#vin").val() == "" || $("#marke").val() == "" || $("#modelis").val() == "" || $("#met").val() == "" || $("#pask").val() == "" || $("#pirm").val() == ""
+                || $("#num").val() == "" || $("#spalv").val() == "" || $("#kuras").val() == "" || $("#codu").val() == "" || $("#svor").val() == "" || $("#ltr").val() == "" || $("#kw").val() == "") {
+                event.preventDefault();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Užpildykite visus duomenis!',
+                    confirmButtonText:'Supratau'
+                })
+            }
+            else {
+            Swal.fire({
+                icon: 'success',
+                title: 'Operacija sėkminga!',
+                showConfirmButton: false,
+                timer: 1600
+            })
+
+            }
+        });
+    });
+</script>

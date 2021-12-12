@@ -26,32 +26,32 @@
                     <br />
                     <p><h2>Techninės apžiūros duomenys:</h2></p>
                     <p style="font-size: larger">Dabartinė rida:</p>
-                    <input type="text" asp-for="DabartineRida" value="" />
+                    <input type="text" asp-for="DabartineRida" value="" id="rida"/>
                     <span asp-validation-for="DabartineRida" class="text-danger"></span>
                     <br />
                     <br />
                     <p style="font-size: larger">Dūmingumas:</p>
-                    <input type="text" asp-for="Dumingumas" value="" />
+                    <input type="number" step=any asp-for="Dumingumas" value="" id="dumingumas"/>
                     <span asp-validation-for="Dumingumas" class="text-danger"></span>
                     <br />
                     <br />
                     <p style="font-size: larger">Važiuoklės būklė:</p>
-                    <input type="text" asp-for="VaziuoklesBukle" value="" />
+                    <input type="text" asp-for="VaziuoklesBukle" value="" id="vaz"/>
                     <span asp-validation-for="VaziuoklesBukle" class="text-danger"></span>
                     <br />
                     <br />
                     <p style="font-size: larger">Variklio būklė:</p>
-                    <input type="text" asp-for="VariklioBukle" value="" />
+                    <input type="text" asp-for="VariklioBukle" value="" id="var"/>
                     <span asp-validation-for="VariklioBukle" class="text-danger"></span>
                     <br />
                     <br />
                     <p style="font-size: larger">Kėbulo būklė:</p>
-                    <input type="text" asp-for="KebuloBukle" value="" />
+                    <input type="text" asp-for="KebuloBukle" value="" id="keb"/>
                     <span asp-validation-for="KebuloBukle" class="text-danger"></span>
                     <br />
                     <br />
                     <p style="font-size: larger">Pastabos:</p>
-                    <textarea type="text" asp-for="Pastabos" value="" rows="10" cols="50"></textarea>
+                    <textarea type="text" asp-for="Pastabos" value="" rows="10" cols="50" id="past"></textarea>
                     <br />
                     <br />
                     <button id="btn_reg" style="margin-left:0px;" class="btn btn-dark" type="submit" name="egz" value="">Deklaruoti rodmenis</button>
@@ -60,3 +60,31 @@
         </section>
     </div>
 </section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#av").submit(function (event) {
+            var e = document.getElementById("Vin");
+            var vall = e.options[e.selectedIndex].value;
+            if ($("#rida").val() == "" || $("#dumingumas").val() == "" || $("#vaz").val() == "" || $("#var").val() == "" || $("#keb").val() == "" || $("#past").val() == "" || vall == "" ){
+                event.preventDefault();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Užpildykite visus duomenis!',
+                    confirmButtonText:'Supratau'
+                })
+            }
+            else {
+            Swal.fire({
+                icon: 'success',
+                title: 'Operacija sėkminga!',
+                showConfirmButton: false,
+                timer: 1600
+            })
+
+            }
+        });
+    });
+</script>

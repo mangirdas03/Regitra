@@ -134,6 +134,7 @@ namespace RegitraISP.Controllers
                 return RedirectToAction("Deklaravimas");
                 //return RedirectToAction("Index", "AutomobiliuValdymas");
             }
+            Task.Delay(1600).Wait();
             return RedirectToAction("Index", "AutomobiliuValdymas");
         }
 
@@ -177,6 +178,7 @@ namespace RegitraISP.Controllers
             {
                 return RedirectToAction("Perleidimas");
             }
+            Task.Delay(1600).Wait();
             return RedirectToAction("Index", "AutomobiliuValdymas");
         }
 
@@ -210,6 +212,7 @@ namespace RegitraISP.Controllers
             {
                 return RedirectToAction("Numeriai");
             }
+            Task.Delay(1600).Wait();
             return RedirectToAction("Index", "AutomobiliuValdymas");
         }
 
@@ -262,6 +265,7 @@ namespace RegitraISP.Controllers
             {
                 return RedirectToAction("Atnaujinimas");
             }
+            Task.Delay(1600).Wait();
             return RedirectToAction("Index", "AutomobiliuValdymas");
         }
     }

@@ -28,9 +28,41 @@
                     @Html.DropDownListFor(m => m.asmens_kodas, ViewBag.usr as IEnumerable<SelectListItem>, "pasirinkite")
                     <br />
                     <br />
-                    <button id="btn_reg" style="margin-left:0px;" class="btn btn-dark" type="submit" name="egz" value="">OK</button>
+                    <button id="btn_reg" style="margin-left:0px;" class="btn btn-dark" type="submit" name="egz" value="">Pateikti</button>
                 </form>
             </div>
         </section>
     </div>
 </section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#av").submit(function (event) {
+            var e = document.getElementById("asmens_kodas");
+            var vall = e.options[e.selectedIndex].value;
+            var e = document.getElementById("Vin");
+            var vall2 = e.options[e.selectedIndex].value;
+
+            if (vall == "" || vall2 == "" ){
+                event.preventDefault();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Užpildykite visus laukus!',
+                    confirmButtonText:'Supratau'
+                })
+            }
+            else {
+            Swal.fire({
+                icon: 'success',
+                title: 'Operacija sėkminga!',
+                showConfirmButton: false,
+                timer: 1600
+            })
+
+            }
+        });
+    });
+</script>
+

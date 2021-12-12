@@ -56,11 +56,38 @@
                     <span asp-validation-for="KilovatuSkaicius" class="text-danger"></span>
                     <br />
                     <br />
-                    <button id="btn_reg" style="margin-left:0px;" class="btn btn-dark" type="submit" name="egz" value="">OK</button>
+                    <button id="btn_reg" style="margin-left:0px;" class="btn btn-dark" type="submit" name="egz" value="">Pateikti</button>
                 </form>
             </div>
         </section>
     </div>
 </section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#av").submit(function (event) {
+            var e = document.getElementById("Vin");
+            var val = e.options[e.selectedIndex].value;
 
+            if (val == "" ){
+                event.preventDefault();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Pasirinkite automobilį!',
+                    confirmButtonText:'Supratau'
+                })
+            }
+            else {
+            Swal.fire({
+                icon: 'success',
+                title: 'Operacija sėkminga!',
+                showConfirmButton: false,
+                timer: 1600
+            })
 
+            }
+        });
+    });
+</script>

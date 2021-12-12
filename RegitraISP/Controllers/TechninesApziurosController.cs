@@ -69,6 +69,7 @@ namespace RegitraISP.Controllers
             {
                 return RedirectToAction("Deklaravimas");
             }
+            Task.Delay(1600).Wait();
             return RedirectToAction("Index", "TechninesApziuros");
         }
 

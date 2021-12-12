@@ -70,9 +70,9 @@
         let choosen = document.getElementById("kuras").value;
         let co2 = document.getElementById("co2").value;
         if (choosen == 'Elektra')
-            co2 = 0;
+            co2 = 1;
         let cost = 0;
-        if (choosen.length != 0 && co2.length != 0) {
+        if (choosen.length != 0 && co2.length != 0 && co2 > 0) {
             switch (choosen) {
                 case 'Dujos':
                     cost = co2 * 0.2
