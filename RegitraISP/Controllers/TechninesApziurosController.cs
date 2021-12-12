@@ -85,5 +85,30 @@ namespace RegitraISP.Controllers
             }
             else return RedirectToAction("Login", "Home");
         }
+
+        public IActionResult Leidimas()
+        {
+            // Paduoda kliento automobilių sąrašą į View (Leidimas)
+            AutomobilisTechnine at = new AutomobilisTechnine();
+            string user = HttpContext.Session.GetString("username");
+            at.Automobiliai = _context.Automobilis.Where(a => a.FkKlientasasmensKodas.Equals(user)).ToList();
+            at.Apziuros = _context.TechnineApziuras.ToList();
+            return View(at);
+        }
+
+        [HttpPost]
+        public IActionResult Leidimas(AutomobilisTechnine data)
+        {
+            TechnineApziura ta = new TechnineApziura();
+
+            ta = _context.TechnineApziuras.OrderBy(a => a.ApziurosId).Where(a => a.FkAutomobilisvin.Equals(data.Vin)).LastOrDefault();
+
+            ta.GaliojimoData = DateTime.Today.AddDays(1); // Pratęsia viena diena
+
+            _context.TechnineApziuras.Update(ta);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "TechninesApziuros");
+        }
     }
 }

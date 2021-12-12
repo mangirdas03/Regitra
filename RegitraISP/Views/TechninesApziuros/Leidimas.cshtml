@@ -1,0 +1,71 @@
+﻿@*
+    Vienos dienos leidimas
+*@
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model RegitraISP.ViewModels.AutomobilisTechnine
+@{
+    ViewData["Title"] = "Leidimas";
+    int c = 0;
+    int d = 0;
+}
+
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+<section id="section" class="bodysection">
+    <div class="container_white">
+        <section class="tm-margin-b-l">
+            <h2 class="pagetitle">Vienos dienos leidimas</h2>
+            <br />
+            <p class="page_infotext">Šiame puslapyje galite įsigyti vienos dienos leidimą</p>
+            <br />
+            <br />
+            @if (Model.Automobiliai.Count > 0)
+            {
+                <p class="page_infotext">Jūsų automobiliai</p>
+                <br />
+                <form method="post" asp-controller="TechninesApziuros" asp-action="Leidimas" id="ta">
+                    <table class="table table-hover table-dark" style="background-color: #4ca1af; box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.8);">
+                        <tr>
+                            <th>Markė</th>
+                            <th>Modelis</th>
+                            <th>Valstybiniai numeriai</th>
+                            <th>Mygtukas</th>
+                            <th>Galiojimo data</th>
+                        </tr>
+                        @foreach (Automobili auto in Model.Automobiliai)
+                        {
+                            <tr>
+                                <td>@auto.Marke</td>
+                                <td>@auto.Modelis</td>
+                                <td>@auto.ValstybiniaiNumeriai</td>
+                                <td>@auto.Vin</td>
+                                @if (DateTime.Today > Model.Apziuros.Where(a => a.FkAutomobilisvin.Equals(auto.Vin)).LastOrDefault().GaliojimoData)
+                                {
+                            <td>
+                                <input type="hidden" asp-for="Vin" id="@d++" value="@auto.Vin" />
+                                <input type="submit" id="@c++" class="btn btn-dark" value="Gauti leidimą" />
+                            </td>
+                                }
+                                @if (DateTime.Today <= Model.Apziuros.Where(a => a.FkAutomobilisvin.Equals(auto.Vin)).LastOrDefault().GaliojimoData)
+                                {
+                                    <td>Galiojimas nesibaigė</td>
+                                }
+                            </tr>
+                        }
+                    </table>
+                </form>
+            }
+            @if (Model.Automobiliai.Count == 0)
+             {
+                <p class="page_infotext">Jūs neturite priregistruoto automobilio</p>
+             }
+        </section>
+    </div>
+</section>
+
+<script>
+    function pranesti(id) {
+        var value = document.getElementById(id);
+        alert(value);
+    }
+</script>

@@ -833,3 +833,4 @@ E:\Mokslai\III kursas\OneDrive - Kaunas University of Technology\Informacinių s
 E:\Mokslai\III kursas\OneDrive - Kaunas University of Technology\Informacinių sistemų pagrindai\redst3\Regitra\RegitraISP\obj\Debug\net5.0\RegitraISP.pdb
 E:\Mokslai\III kursas\OneDrive - Kaunas University of Technology\Informacinių sistemų pagrindai\redst3\Regitra\RegitraISP\obj\Debug\net5.0\RegitraISP.genruntimeconfig.cache
 E:\Mokslai\III kursas\OneDrive - Kaunas University of Technology\Informacinių sistemų pagrindai\redst3\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\Pazymejimai\Atnaujinimas.cshtml.g.cs
+E:\Mokslai\III kursas\OneDrive - Kaunas University of Technology\Informacinių sistemų pagrindai\redst3\Regitra\RegitraISP\obj\Debug\net5.0\Razor\Views\TechninesApziuros\Leidimas.cshtml.g.cs
