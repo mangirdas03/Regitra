@@ -93,16 +93,20 @@ namespace RegitraISP.Controllers
         }
 
 
-        public IActionResult Uzsakymas()
-        {
-            // Paduoda klientą bei pažymėjimų sąrašą į View (Uzsakymas)
-            KlientasPazymejimas kp = new KlientasPazymejimas();
-            string user = HttpContext.Session.GetString("username");
-            kp.Klientas = _context.Klientas.Where(a => a.AsmensKodas.Equals(user)).FirstOrDefault();
-            kp.Pazymejimas = _context.VairuotojoPazymejimas.Where(a => a.FkKlientasasmensKodas.Equals(user)).FirstOrDefault();
-            return View(kp);
-        }
 
+        public IActionResult Uzsakymas() // NAUDOTOJAS
+        {
+            if (HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 0)
+            {
+                // Paduoda klientą bei pažymėjimų sąrašą į View (Uzsakymas)
+                KlientasPazymejimas kp = new KlientasPazymejimas();
+                string user = HttpContext.Session.GetString("username");
+                kp.Klientas = _context.Klientas.Where(a => a.AsmensKodas.Equals(user)).FirstOrDefault();
+                kp.Pazymejimas = _context.VairuotojoPazymejimas.Where(a => a.FkKlientasasmensKodas.Equals(user)).FirstOrDefault();
+                return View(kp);
+            }
+            else return RedirectToAction("Login", "Home");
+        }
         [HttpPost]
         public IActionResult UzsakymasProcess()
         {
@@ -137,19 +141,26 @@ namespace RegitraISP.Controllers
             {
                 return RedirectToAction("Uzsakymas");
             }
+            Task.Delay(1600).Wait();
             return RedirectToAction("Index", "Pazymejimai");
         }
 
-        public IActionResult Atnaujinimas()
-        {
-            // Paduoda klientą bei pažymėjimų sąrašą į View (Atnaujinimas)
-            KlientasPazymejimas kp = new KlientasPazymejimas();
-            string user = HttpContext.Session.GetString("username");
-            kp.Klientas = _context.Klientas.Where(a => a.AsmensKodas.Equals(user)).FirstOrDefault();
-            kp.Pazymejimas = _context.VairuotojoPazymejimas.Where(a => a.FkKlientasasmensKodas.Equals(user)).FirstOrDefault();
-            return View(kp);
-        }
 
+
+        public IActionResult Atnaujinimas() // NAUDOTOJAS
+        {
+
+            if (HttpContext.Session.GetString("username") != null && HttpContext.Session.GetInt32("isEmployee") == 0)
+            {
+                // Paduoda klientą bei pažymėjimų sąrašą į View (Atnaujinimas)
+                KlientasPazymejimas kp = new KlientasPazymejimas();
+                string user = HttpContext.Session.GetString("username");
+                kp.Klientas = _context.Klientas.Where(a => a.AsmensKodas.Equals(user)).FirstOrDefault();
+                kp.Pazymejimas = _context.VairuotojoPazymejimas.Where(a => a.FkKlientasasmensKodas.Equals(user)).FirstOrDefault();
+                return View(kp);
+            }
+            else return RedirectToAction("Login", "Home");
+        }
         [HttpPost]
         public IActionResult AtnaujinimasProcess()
         {
@@ -164,8 +175,8 @@ namespace RegitraISP.Controllers
             // Įrašo duomenis į duomenų bazę
             _context.VairuotojoPazymejimas.Update(vp);
             _context.SaveChanges();
-
-            return RedirectToAction("Index", "Pazymejimai");
+            Task.Delay(1600).Wait();
+            return RedirectToAction("Bukle", "Pazymejimai");
         }
 
     }

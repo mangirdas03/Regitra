@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\fongy\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\fongy\\.nuget\\packages"
+      "C:\\Users\\gladi\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\gladi\\.nuget\\packages"
     ]
   }
 }

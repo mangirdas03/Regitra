@@ -18,20 +18,35 @@
             <br />
             <br />
             @if (Model.Klientas.TeorijosEgzIslaikytas && Model.Klientas.PraktikosEgzIslaikytas && Model.Pazymejimas == null)
-             {
+            {
                 <form method="post" asp-controller="Pazymejimai" asp-action="UzsakymasProcess" id="p">
-                    <input type="submit" value="Uzsakyti" />
+                    <input type="submit" class="btn btn-primary btn-lg" value="Užsakyti naują vairuotojo pažymėjimą" style="margin: auto;" />
                 </form>
-             }
+            }
             @if (Model.Pazymejimas != null)
-             {
-                <p class="page_infotext">Jūs vairuotojo pažymėjimą jau esate užsisakę</p>
-             }
+            {
+                <p class="page_infotext">Jūs vairuotojo pažymėjimą jau esate užsisakę. Jo statusą galite patikrinti <a href="@Url.Action("Bukle", "Pazymejimai")">čia.</a></p>
+            }
             @if (!Model.Klientas.TeorijosEgzIslaikytas || !Model.Klientas.PraktikosEgzIslaikytas)
-             {
-                <p class="page_infotext">Kad galėtumėte užsisakyti vairuotojo pažymėjimą, turite išlaikyti teorijos bei praktikos egzaminus</p>
-             }
+            {
+                <p class="page_infotext">Kad galėtumėte užsisakyti vairuotojo pažymėjimą, turite išlaikyti teorijos bei praktikos egzaminus.</p>
+            }
         </section>
     </div>
 </section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#p").submit(function () {
+            Swal.fire({
+                icon: 'success',
+                title: 'Operacija sėkminga!',
+                showConfirmButton: false,
+                timer: 1600
+            })
+        });
+    });
+</script>
 

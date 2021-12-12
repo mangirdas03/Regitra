@@ -16,21 +16,28 @@
         <section class="tm-margin-b-l">
             <h2 class="pagetitle">Vienos dienos leidimas</h2>
             <br />
-            <p class="page_infotext">Šiame puslapyje galite įsigyti vienos dienos leidimą</p>
+            <p class="page_infotext">Šiame puslapyje yra išduodami vienos dienos leidimai nuvykti į apžiūrą transporto priemonėms, kurių TA galiojimas yra pasibaigęs.</p>
             <br />
             <br />
             @if (Model.Automobiliai.Count > 0)
             {
-                <p class="page_infotext">Jūsų automobiliai</p>
+                <p class="page_infotext" style="text-align:center;">Jūsų transporto priemonės</p>
                 <br />
                 <form method="post" asp-controller="TechninesApziuros" asp-action="Leidimas" id="ta">
                     <table class="table table-hover table-dark" style="background-color: #4ca1af; box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.8);">
+                        <colgroup>
+                            <col span="1" style="width: 15%;">
+                            <col span="1" style="width: 15%;">
+                            <col span="1" style="width: 15%;">
+                            <col span="1" style="width: 15%;">
+                            <col span="1" style="width: 40%;">
+                        </colgroup>
                         <tr>
                             <th>Markė</th>
                             <th>Modelis</th>
                             <th>Valstybiniai numeriai</th>
-                            <th>Mygtukas</th>
-                            <th>Galiojimo data</th>
+                            <th>VIN</th>
+                            <th>TA Galiojimo data</th>
                         </tr>
                         @foreach (Automobili auto in Model.Automobiliai)
                         {
@@ -41,14 +48,14 @@
                                 <td>@auto.Vin</td>
                                 @if (DateTime.Today > Model.Apziuros.Where(a => a.FkAutomobilisvin.Equals(auto.Vin)).LastOrDefault().GaliojimoData)
                                 {
-                            <td>
-                                <input type="hidden" asp-for="Vin" id="@d++" value="@auto.Vin" />
-                                <input type="submit" id="@c++" class="btn btn-dark" value="Gauti leidimą" />
-                            </td>
+                                    <td>
+                                        <input type="hidden" asp-for="Vin" id="@d++" value="@auto.Vin" />
+                                        <input type="submit" id="@c++" class="btn btn-dark" value="Gauti leidimą" />
+                                    </td>
                                 }
                                 @if (DateTime.Today <= Model.Apziuros.Where(a => a.FkAutomobilisvin.Equals(auto.Vin)).LastOrDefault().GaliojimoData)
                                 {
-                                    <td>Galiojimas nesibaigė</td>
+                                    <td>Transporto priemonės TA galioja iki @Html.FixDateFormat(Model.Apziuros.Where(a => a.FkAutomobilisvin.Equals(auto.Vin)).LastOrDefault().GaliojimoData)</td>
                                 }
                             </tr>
                         }
@@ -56,9 +63,9 @@
                 </form>
             }
             @if (Model.Automobiliai.Count == 0)
-             {
-                <p class="page_infotext">Jūs neturite priregistruoto automobilio</p>
-             }
+            {
+                <p class="page_infotext">Jūs neturite priregistruotų transporto priemonių.</p>
+            }
         </section>
     </div>
 </section>
@@ -68,4 +75,19 @@
         var value = document.getElementById(id);
         alert(value);
     }
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#ta").submit(function () {
+            Swal.fire({
+                icon: 'success',
+                title: 'Operacija sėkminga!',
+                showConfirmButton: false,
+                timer: 1600
+            })
+        });
+    });
 </script>

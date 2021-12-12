@@ -19,18 +19,33 @@
             <br />
             @if (Model.Pazymejimas != null && DateTime.Today > Model.Pazymejimas.GaliojimoData)
             {
-                <form method="post" asp-controller="Pazymejimai" asp-action="AtnaujinimasProcess" id="p">
-                    <button type="submit" value="">Atnaujinti pažymėjimą</button>
+                <form method="post" asp-controller="Pazymejimai" asp-action="AtnaujinimasProcess" id="p" style="margin: auto; text-align: center;">
+                    <button type="submit" class="btn btn-primary btn-lg" value="" style="margin: auto; text-align:center">Atnaujinti pažymėjimą</button>
                 </form>
             }
             @if (Model.Pazymejimas != null && DateTime.Today <= Model.Pazymejimas.GaliojimoData)
             {
-                <p class="page_infotext">Jūsų vairuotojo pažymėjimo galiojimo laikas dar nepasibaigė</p>
+                <p class="page_infotext">Jūsų vairuotojo pažymėjimo galiojimo laikas dar nepasibaigė.</p> <p>Pažymėjimo galiojimo data: @Html.FixDateFormat(Model.Pazymejimas.GaliojimoData)</p>
             }
             @if (Model.Pazymejimas == null)
             {
-                <p class="page_infotext">Jus nesate užsisakęs vairuotojo pažymėjimo</p>
+                <p class="page_infotext">Jus nesate užsisakęs vairuotojo pažymėjimo.</p>
             }
         </section>
     </div>
 </section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#p").submit(function () {
+            Swal.fire({
+                icon: 'success',
+                title: 'Operacija sėkminga!',
+                showConfirmButton: false,
+                timer: 1600
+            })
+        });
+    });
+</script>
