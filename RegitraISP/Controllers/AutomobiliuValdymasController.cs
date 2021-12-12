@@ -73,6 +73,7 @@ namespace RegitraISP.Controllers
                 sdk += chars[rand.Next(0, chars.Length)];
             }
             Automobili auto = _context.Automobilis.Find(vin);
+            //Automobili auto = _context.Automobilis.Where(a => a.Vin.Equals(vin)).FirstOrDefault();
             auto.Sdk = sdk;
             _context.Automobilis.Update(auto);
             _context.SaveChanges();

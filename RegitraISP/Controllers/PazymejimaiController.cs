@@ -142,7 +142,7 @@ namespace RegitraISP.Controllers
                 return RedirectToAction("Uzsakymas");
             }
             Task.Delay(1600).Wait();
-            return RedirectToAction("Index", "Pazymejimai");
+            return RedirectToAction("Bukle", "Pazymejimai");
         }
 
 
