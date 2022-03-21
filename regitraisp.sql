@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2021 at 06:29 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Generation Time: Mar 21, 2022 at 09:02 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -106,7 +106,7 @@ INSERT INTO `automobilis` (`vin`, `marke`, `modelis`, `sdk`, `pagaminimo_metai`,
 
 CREATE TABLE `darbuotojas` (
   `tabelio_nr` int(11) NOT NULL,
-  `slaptazodis` varchar(30) NOT NULL,
+  `slaptazodis` varchar(150) NOT NULL,
   `vardas` varchar(25) NOT NULL,
   `pavarde` varchar(25) NOT NULL,
   `fk_Filialasid_Filialas` int(11) NOT NULL
@@ -118,8 +118,7 @@ CREATE TABLE `darbuotojas` (
 
 INSERT INTO `darbuotojas` (`tabelio_nr`, `slaptazodis`, `vardas`, `pavarde`, `fk_Filialasid_Filialas`) VALUES
 (123, '$2a$11$Fxe3TxCxAS30weev18eLiee', 'Test', 'Test1', 102),
-(12345, '$2a$11$0IX4G/5/CiZqeBTWM3EAtef', 'Petras', 'Petrauskas', 103),
-(23456, '$2a$11$0IX4G/5/CiZqeBTWM3EAtef', 'Jonas', 'Jonauskas', 104);
+(23456, '$2a$11$KDYrNVy.kjfQilV4w1VWHeUClULfHAhQxK73znzgc8psjV7CY7iZ2', 'Jonas', 'Jonauskas', 104);
 
 -- --------------------------------------------------------
 
@@ -200,7 +199,7 @@ INSERT INTO `filialas` (`gatve`, `gatves_nr`, `teorijos_egz`, `praktikos_egz`, `
 
 CREATE TABLE `klientas` (
   `asmens_kodas` varchar(12) NOT NULL,
-  `slaptazodis` varchar(30) NOT NULL,
+  `slaptazodis` varchar(150) NOT NULL,
   `vardas` varchar(25) NOT NULL,
   `pavarde` varchar(25) NOT NULL,
   `tel_nr` varchar(10) NOT NULL,
@@ -218,9 +217,8 @@ CREATE TABLE `klientas` (
 
 INSERT INTO `klientas` (`asmens_kodas`, `slaptazodis`, `vardas`, `pavarde`, `tel_nr`, `el_pastas`, `teorijos_egz_data`, `praktikos_egz_data`, `teorijos_egz_islaikytas`, `praktikos_egz_islaikytas`, `nuotrauka`) VALUES
 ('11', '$2a$11$t7aUxouEgFoIgoNkbxmJveq', 'Tevas', 'Motina', '5445622', '56534234', '2021-12-20', '2021-12-04', 0, 0, NULL),
-('22', '$2a$11$JhwEn2CFudWkbJKf8T2/8uk', 'Remigijus', 'Viršila', '654321', 'testtest', NULL, NULL, 1, 1, 0x32322e6a7067),
-('33', '$2a$11$0IX4G/5/CiZqeBTWM3EAtef', '33', '33', '33', '33', NULL, NULL, 0, 0, NULL),
-('50009110000', '$2a$11$QR2TVdzt/6.HV5WdtCZMxuc', 'Remigijus', 'Viršila', '863259874', 'remvirsila@gmail.com', NULL, NULL, 0, 0, 0x35303030393131303030302e6a7067);
+('22', '$2a$11$KDYrNVy.kjfQilV4w1VWHeUClULfHAhQxK73znzgc8psjV7CY7iZ2', 'Remigijus', 'Viršila', '654321', 'testtest', NULL, NULL, 1, 1, 0x32322e6a7067),
+('50009110000', '$2a$11$KDYrNVy.kjfQilV4w1VWHeUClULfHAhQxK73znzgc8psjV7CY7iZ2', 'Remigijus', 'Viršila', '863259874', 'remvirsila@gmail.com', NULL, NULL, 0, 0, 0x35303030393131303030302e6a7067);
 
 -- --------------------------------------------------------
 
