@@ -55,7 +55,7 @@ namespace RegitraISP.Controllers
                 var checkUser = _context.Klientas.Where(a => a.AsmensKodas.Equals(user.Name)).FirstOrDefault();
                 var checkEmpolyee = _context.Darbuotojas.Where(b => b.TabelioNr.ToString().Equals(user.Name)).FirstOrDefault();
 
-                if (checkUser != null && !BCryptNet.Verify(user.Password, checkUser.Slaptazodis))
+                if (checkUser != null && BCryptNet.Verify(user.Password, checkUser.Slaptazodis))
                 {
                     HttpContext.Session.SetString("username", user.Name.ToString());
                     //HttpContext.Session.SetString("passw", user.Password.ToString()); // Illegal?
@@ -63,7 +63,7 @@ namespace RegitraISP.Controllers
                     HttpContext.Session.SetString("userid", checkUser.AsmensKodas);
                     return RedirectToAction("UserDashboard");
                 }
-                else if(checkEmpolyee != null && !BCryptNet.Verify(user.Password, checkEmpolyee.Slaptazodis))
+                else if(checkEmpolyee != null && BCryptNet.Verify(user.Password, checkEmpolyee.Slaptazodis))
                 {
                     HttpContext.Session.SetString("username", user.Name.ToString());
                     //HttpContext.Session.SetString("passw", user.Password.ToString()); // Illegal?

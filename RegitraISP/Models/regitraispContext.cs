@@ -215,7 +215,7 @@ namespace RegitraISP.Models
 
                 entity.Property(e => e.Slaptazodis)
                     .IsRequired()
-                    .HasMaxLength(30)
+                    .HasMaxLength(150)
                     .HasColumnName("slaptazodis");
 
                 entity.Property(e => e.FkFilialasidFilialas)
@@ -365,7 +365,7 @@ namespace RegitraISP.Models
 
                 entity.Property(e => e.Slaptazodis)
                     .IsRequired()
-                    .HasMaxLength(30)
+                    .HasMaxLength(150)
                     .HasColumnName("slaptazodis");
 
                 entity.Property(e => e.ElPastas)

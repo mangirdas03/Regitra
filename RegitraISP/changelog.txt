@@ -1,0 +1,12 @@
+﻿Darbuotojai:
+	name: 23456
+	pass: 22
+Naudotojai: (galima susikurt patiem)
+	name: 22
+	pass: 22
+	,
+	name: 50009110000
+	pass: 22
+
+2022-03-21
+Sutaisiau login sistemą
